@@ -3,27 +3,28 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 
+const correo = "jesus.ss.12354@gmail.com";
+const paswword = "1234qwer";
+
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(false); // Estado para el mensaje de error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://restaurante-system-api.us-e2.cloudhub.io/api/login",
-        {
-          Correo: email,
-          Contrasena: password
-        }
-      );
-
-      // Aquí puedes manejar la respuesta de la API, por ejemplo, redirigir a otra página si el inicio de sesión es exitoso
-      console.log("Respuesta de inicio de sesión:", response.data);
+      if (email === correo && password === paswword) {
+        // Si el correo y la contraseña coinciden con los predefinidos, redirige a /home
+        window.location.href = "/home";
+      } else {
+        // Si el correo o la contraseña no coinciden, muestra un mensaje de error
+        setLoginError(true);
+      }
     } catch (error) {
       console.error("Error en inicio de sesión:", error);
-      // Aquí puedes manejar el error, mostrar un mensaje de error al usuario, etc.
+      // Aquí puedes manejar el error de la solicitud a la API si es necesario
     }
   };
 
@@ -34,6 +35,7 @@ export const Login = () => {
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>Inicio de sesión</legend>
+              {loginError && <p style={{ color: "red" }}>Correo o contraseña incorrectos. Intente nuevamente.</p>}
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1" className="form-label mt-4">Correo electrónico</label>
                 <input 
@@ -60,9 +62,8 @@ export const Login = () => {
               </div>
               <br></br>
               <div className="d-grid gap-2">
-
-              <a href="/Home" class="btn btn-outline-danger">Iniciar sesión</a>
-            </div>
+                <button type="submit" className="btn btn-outline-danger">Iniciar sesión</button>
+              </div>
             </fieldset>
           </form>
 

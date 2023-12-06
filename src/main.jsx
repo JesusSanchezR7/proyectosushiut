@@ -8,15 +8,8 @@ import { Home } from "../components/home/home";
 import { Reservar } from "../components/reservar/reservar";
 import { Carrito } from "../components/carrito/carrito";
 
-import  Charolas  from "../components/catalogo/charolas";
-import { Combos } from "../components/catalogo/combos";
-import { Entradas } from "../components/catalogo/entradas";
-import { Hamburguesas } from "../components/catalogo/hamburguesas";
-import { Ramen } from "../components/catalogo/ramen";
-import { Sushi } from "../components/catalogo/sushi";
-import { Sushivip } from "../components/catalogo/sushivip";
-import { Teriyaki } from "../components/catalogo/teriyaki";
-import { Wings } from "../components/catalogo/wings";
+import  Menu  from "../components/menu/charolas";
+
 
 import { DatosEnvio } from "../components/envio/datosenvio";
 import { Envio } from "../components/envio/envio";
@@ -86,97 +79,14 @@ const App = () => {
           />  
 
         <Route
-            path="/Charolas"
+            path="/Menu"
             element={
               <div>
                 <Navbar onSearch={handleSearch} /> <br></br>
-                <Charolas></Charolas>
+                <Menu></Menu>
                 </div>
             }
           />        
-
-        <Route
-            path="/Combos"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Combos></Combos>
-                </div>
-            }
-          />        
-
-        <Route
-            path="/Entradas"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Entradas></Entradas>
-                </div>
-            }
-          />    
-
-        <Route
-            path="/Hamburguesas"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Hamburguesas></Hamburguesas>
-                </div>
-            }
-          />    
-
-        <Route
-            path="/Ramen"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Ramen></Ramen>
-                </div>
-            }
-          />    
-
-        <Route
-            path="/Sushi"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Sushi></Sushi>
-                </div>
-            }
-          />    
-
-
-        <Route
-            path="/Sushivip"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Sushivip></Sushivip>
-                </div>
-            }
-          />    
-
-
-        <Route
-            path="/Teriyaki"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Teriyaki></Teriyaki>
-                </div>
-            }
-          />    
-
-        <Route
-            path="/Wings"
-            element={
-              <div>
-                <Navbar onSearch={handleSearch} /> <br></br>
-                <Wings></Wings>
-                </div>
-            }
-          />    
-
 
         <Route
             path="/DatosEnvio"

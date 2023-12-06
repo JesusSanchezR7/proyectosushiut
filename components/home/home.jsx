@@ -52,11 +52,17 @@ export const Home = () => {
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/244643163_4191069864335442_9216684742324504193_n.png?_nc_cat=105&ccb=1-7&_nc_sid=783fdb&_nc_ohc=d1LKUNDTlrYAX-5eEVe&_nc_ht=scontent-lax3-1.xx&oh=00_AfCTMs0kApIUhDi__VVN9u8QlK4vPKKOFIDzb5s4AAxqEA&oe=656CC210" className="d-block w-100" alt="Slide 1" />
+          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/272825895_4580286292080462_1397370603379805658_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9534ce&_nc_ohc=xJ7wWmg76vkAX-HShkz&_nc_oc=AQlBL62JkG5YXpcYH2Mj2h5efjzcmwwBoapKeMTsDwb-5HTgrAEdQBW7acVJ7VqNhMQ2MXyH3sZyMsVhrhptjmsG&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfDjznCpuRMz3F9-Hh9WGQjJobpDppicJkHhv5cMN72Q7g&oe=65759A5D" className="d-block w-100" alt="Slide 1" />
           
         </div>
         <div className="carousel-item">
-          <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/272825895_4580286292080462_1397370603379805658_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9534ce&_nc_ohc=Kwd-R43FdpkAX_Sx0Vd&_nc_ht=scontent-lax3-1.xx&oh=00_AfBiUGpcdJhb-0_O2FFu5-jgs4pBd1OXCsYf3WDAemEF9A&oe=656DB15D" className="d-block w-100" alt="Slide 2" />
+          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/339018749_624298312454425_5235373230029821303_n.jpg?_nc_cat=&ccb=1-7&_nc_sid=3635dc&_nc_ohc=gllTBwi1P_QAX8i6OrW&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfDFfSgf2tc9_V6qUzg4SfZ1Y3plXH15xnh3uK141R6yBg&oe=6575CC8C" className="d-block w-100" alt="Slide 2" />
+        </div>
+        <div className="carousel-item">
+          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/299089338_5145917332184019_878055312932740422_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=pq-YAZepSeoAX_v08FO&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfAZ3o6P9A_k8zXGCF3jJuakiKUFIqS0KkkcbfIb9J42Uw&oe=657608AC" className="d-block w-100" alt="Slide 2" />
+        </div>
+        <div className="carousel-item">
+          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/299102230_5145912055517880_2713945587767683649_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=JaOS1h9j7_oAX8CPzST&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfBEWrHQjI85VypjmBqpWfvRzgbYbU3FBHj_c7HKpcVH7Q&oe=6575BF7F" className="d-block w-100" alt="Slide 2" />
         </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
