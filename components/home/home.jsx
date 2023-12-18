@@ -56,13 +56,10 @@ export const Home = () => {
           
         </div>
         <div className="carousel-item">
-          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/339018749_624298312454425_5235373230029821303_n.jpg?_nc_cat=&ccb=1-7&_nc_sid=3635dc&_nc_ohc=gllTBwi1P_QAX8i6OrW&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfDFfSgf2tc9_V6qUzg4SfZ1Y3plXH15xnh3uK141R6yBg&oe=6575CC8C" className="d-block w-100" alt="Slide 2" />
+          <img src="https://scontent.fcen2-1.fna.fbcdn.net/v/t39.30808-6/244643163_4191069864335442_9216684742324504193_n.png?_nc_cat=105&ccb=1-7&_nc_sid=783fdb&_nc_ohc=9E6UAsDknV8AX_NS9MR&_nc_ht=scontent.fcen2-1.fna&cb_e2o_trans=t&oh=00_AfCDfSLQKUt3pJu0jDQ9KnyvEstEK0otl7aoIBITT4pmhg&oe=6576A550" className="d-block w-100" alt="Slide 2" />
         </div>
         <div className="carousel-item">
-          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/299089338_5145917332184019_878055312932740422_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=pq-YAZepSeoAX_v08FO&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfAZ3o6P9A_k8zXGCF3jJuakiKUFIqS0KkkcbfIb9J42Uw&oe=657608AC" className="d-block w-100" alt="Slide 2" />
-        </div>
-        <div className="carousel-item">
-          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/299102230_5145912055517880_2713945587767683649_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=JaOS1h9j7_oAX8CPzST&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfBEWrHQjI85VypjmBqpWfvRzgbYbU3FBHj_c7HKpcVH7Q&oe=6575BF7F" className="d-block w-100" alt="Slide 2" />
+          <img src="https://scontent.fcen2-1.fna.fbcdn.net/v/t1.6435-9/155550141_3550474475061654_6876783236805510395_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=783fdb&_nc_ohc=VQukTfBMSA0AX-ZSynJ&_nc_ht=scontent.fcen2-1.fna&cb_e2o_trans=t&oh=00_AfDq_-J0sCB7cNh5MzBB4n4DfzAH0U1FqcdSKKXQNXUkcQ&oe=6599EA69" className="d-block w-100" alt="Slide 2" />
         </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

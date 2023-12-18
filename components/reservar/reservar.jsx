@@ -18,7 +18,9 @@ export const Reservar = () => {
 
   return (
     <div className="Reservar">
-      <div className="row justify-content-center">
+
+    <div class="container mt-4 p-5 bg-primary text-white rounded">
+<    div className="row justify-content-center">
         <div className="col-md-6">
         <div className="mb-3">
             <p className="text-start">ANTICIPO POR RESERVACION:$100</p>
@@ -88,6 +90,10 @@ export const Reservar = () => {
           </form>
         </div>
       </div>
+</div>
+
+
+      
     </div>
   );
 };

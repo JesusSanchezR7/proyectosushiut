@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 
 export const Registro = () => {
   const [formData, setFormData] = useState({
     Nombre: "",
+    Rol: "", 
     Correo: "",
     Direccion: "",
     Contrasena: "",
@@ -22,20 +22,29 @@ export const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post(
-        "https://restaurante-system-api.us-e2.cloudhub.io/api/usuarios",
-        formData
-      );
-
-      console.log("Respuesta de registro:", response.data);
+      const response = await fetch(import.meta.env.VITE_API_USERS, {
+        method: 'POST',
+        headers: {
+          'client_id': import.meta.env.VITE_CLIENT_ID,
+          'client_secret': import.meta.env.VITE_CLIENT_SECRET,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      console.log("Datos enviados al servidor:", formData); // Agrega este console.log para mostrar los datos enviados
+      console.log("Respuesta de registro:", data);
       // Aquí podrías redirigir al usuario a una página de éxito, mostrar un mensaje, etc.
     } catch (error) {
-      console.error("Error en registro:", error);
+      console.error("Error en registro:", error.response.status, error.response.data);
       // Aquí puedes manejar el error, mostrar un mensaje de error al usuario, etc.
     }
   };
+  
 
   return (
     <div className="Registro">
@@ -44,6 +53,18 @@ export const Registro = () => {
           <form onSubmit={handleSubmit}>
             <fieldset>
               <legend>Registro</legend>
+              {/* Agregar campo para el Rol */}
+              <div className="form-group">
+                <label htmlFor="Rol" className="form-label mt-4">Rol</label>
+                <input 
+                  type="text"
+                  className="form-control"
+                  id="Rol"
+                  placeholder="Ingresa tu rol"
+                  value={formData.Rol}
+                  onChange={handleChange}
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="Nombre" className="form-label mt-4">Nombre</label>
                 <input 
@@ -100,9 +121,9 @@ export const Registro = () => {
                   onChange={handleChange}
                 />
               </div><br></br>
-              <div className="d-grid gap-2">
-              <a href="/" class="btn btn-outline-danger">Registrarse</a>
-            </div>
+               <div className="d-grid gap-2">
+                <button type="submit" className="btn btn-outline-danger">Registrarse</button>
+              </div>
             </fieldset>
           </form>
 

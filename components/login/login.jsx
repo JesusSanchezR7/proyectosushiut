@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/Cosmo/bootstrap.min.css";
-
-const correo = "jesus.ss.12354@gmail.com";
-const paswword = "1234qwer";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(false); // Estado para el mensaje de error
+  const [loginError, setLoginError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      if (email === correo && password === paswword) {
-        // Si el correo y la contraseña coinciden con los predefinidos, redirige a /home
-        window.location.href = "/home";
+      const response = await axios.post(
+        "https://restaurante-system-api.us-e2.cloudhub.io/api/login", // URL de tu API de login
+        { email, password } // Datos a enviar (email y password)
+      );
+
+      if (response.status === 200) {
+        window.location.href = "/home"; // Redirigir si la respuesta es exitosa
       } else {
-        // Si el correo o la contraseña no coinciden, muestra un mensaje de error
-        setLoginError(true);
+        setLoginError(true); // Mostrar mensaje de error si la respuesta no es exitosa
       }
     } catch (error) {
       console.error("Error en inicio de sesión:", error);
-      // Aquí puedes manejar el error de la solicitud a la API si es necesario
+      setLoginError(true); // Mostrar mensaje de error si hay problemas con la solicitud
     }
   };
 

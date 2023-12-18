@@ -40,31 +40,13 @@ export const Navbar = () => {
               </li>
             </ul>
             <form className="d-flex">
-              <a className="nav-link" href="#" onClick={openModal}>
-                <img src="./img/carrito.ico" alt="Logo" width="33" height="30" />
+              <a className="nav-link" href="/">
               </a>
             </form>
           </div>
         </div>
       </nav>
 
-      <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
-        <div className="modal-dialog" style={{ borderRadius: '10px' }}>
-          <div className="modal-content">
-            <div className="modal-header" style={{ backgroundColor: '#343a40', color: 'white', borderBottom: '1px solid #dee2e6' }}>
-              <h5 className="modal-title" style={{ marginBottom: '0' }}>PEDIDO</h5>
-              <button type="button" className="btn-close" aria-label="Close" onClick={closeModal}></button>
-            </div>
-            <div className="modal-body" style={{ padding: '20px' }}>
-              {/* Aquí puedes agregar el contenido de tu carrito de compras */}
-              <p>Contenido del carrito...</p>
-            </div>
-            <div className="modal-footer" style={{ backgroundColor: '#f8f9fa', borderTop: '1px solid #dee2e6' }}>
-              <button type="button" className="btn-close btn-close-white" onClick={closeModal}>Cerrar</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
