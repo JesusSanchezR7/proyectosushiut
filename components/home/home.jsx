@@ -52,14 +52,11 @@ export const Home = () => {
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/272825895_4580286292080462_1397370603379805658_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9534ce&_nc_ohc=xJ7wWmg76vkAX-HShkz&_nc_oc=AQlBL62JkG5YXpcYH2Mj2h5efjzcmwwBoapKeMTsDwb-5HTgrAEdQBW7acVJ7VqNhMQ2MXyH3sZyMsVhrhptjmsG&_nc_ht=scontent.fmxl1-1.fna&cb_e2o_trans=t&oh=00_AfDjznCpuRMz3F9-Hh9WGQjJobpDppicJkHhv5cMN72Q7g&oe=65759A5D" className="d-block w-100" alt="Slide 1" />
+          <img src="./img/fondo2.jpg" className="d-block w-100" alt="Slide 1" />
           
         </div>
         <div className="carousel-item">
-          <img src="https://scontent.fcen2-1.fna.fbcdn.net/v/t39.30808-6/244643163_4191069864335442_9216684742324504193_n.png?_nc_cat=105&ccb=1-7&_nc_sid=783fdb&_nc_ohc=9E6UAsDknV8AX_NS9MR&_nc_ht=scontent.fcen2-1.fna&cb_e2o_trans=t&oh=00_AfCDfSLQKUt3pJu0jDQ9KnyvEstEK0otl7aoIBITT4pmhg&oe=6576A550" className="d-block w-100" alt="Slide 2" />
-        </div>
-        <div className="carousel-item">
-          <img src="https://scontent.fcen2-1.fna.fbcdn.net/v/t1.6435-9/155550141_3550474475061654_6876783236805510395_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=783fdb&_nc_ohc=VQukTfBMSA0AX-ZSynJ&_nc_ht=scontent.fcen2-1.fna&cb_e2o_trans=t&oh=00_AfDq_-J0sCB7cNh5MzBB4n4DfzAH0U1FqcdSKKXQNXUkcQ&oe=6599EA69" className="d-block w-100" alt="Slide 2" />
+          <img src="./img/fondo1.jpg" className="d-block w-100" alt="Slide 2" />
         </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

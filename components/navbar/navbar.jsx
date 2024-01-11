@@ -16,10 +16,10 @@ export const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="container-fluid">
           <a className="navbar-brand-center" href="/Home">
-            <img src="./img/icon.png" alt="Logo" width="60" height="40" />
+            <img src="./img/icon.png" alt="Logo" width="70" height="40" />
           </a>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ export const Navbar = () => {
                 <a className="nav-link active" href="/menu">Menú</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/Reservar">Reservar</a>
+                <a className="nav-link" href="/Reservar">Reservaciones</a>
               </li>
             </ul>
             <form className="d-flex">

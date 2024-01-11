@@ -3,10 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./reservar.css";
+
 
 export const Reservar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const [selectedPlace, setSelectedPlace] = useState(""); // Estado para almacenar el lugar de reservación
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -16,18 +19,49 @@ export const Reservar = () => {
     setSelectedTime(event.target.value);
   };
 
-  return (
-    <div className="Reservar">
+  const handleReservarClick = (place) => {
+    setSelectedPlace(place); // Establecer el lugar de reservación al hacer clic en el botón
+    const modal = document.querySelector(".Reservar");
+    modal.style.display = "block";
+  };
 
-    <div class="container mt-4 p-5 bg-primary text-white rounded">
-<    div className="row justify-content-center">
-        <div className="col-md-6">
-        <div className="mb-3">
-            <p className="text-start">ANTICIPO POR RESERVACION:$100</p>
-          </div>
+  const handleCloseModal = () => {
+    const modal = document.querySelector(".Reservar");
+    modal.style.display = "none";
+  };
+
+  return (
+    <div className="reservar-container">
+      <div className="restauarnte1">
+        <button onClick={() => handleReservarClick("Calzada Monterrey")}>Reservar</button>
+      </div>
+      <div className="restauarnte2">
+        <button onClick={() => handleReservarClick("Libertad y 43")}>Reservar</button>
+      </div>
+      <div className="restauarnte3">
+        <button onClick={() => handleReservarClick("Av Insurgentes y 2da Cd. Gpe Victoria")}>Reservar</button>
+      </div>
+
+      <div className="Reservar" style={{ display: "none" }}>
+    <div className="row justify-content-center">
           <form>
             <fieldset>
-              <legend>Reservar</legend>
+              <legend>Reservar  <button className="btn  btn-outline-danger" onClick={handleCloseModal}>
+              close
+            </button></legend>
+              <div className="form-group">
+                <label htmlFor="inputName" className="form-label mt-4">
+                  Lugar de Reservacion 
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputPlace"
+                  placeholder=""
+                  value={selectedPlace}
+                  readOnly 
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="inputName" className="form-label mt-4">
                   Nombre
@@ -83,17 +117,13 @@ export const Reservar = () => {
                 </div>
               </div>
             </fieldset><br></br>
-
             <div className="d-grid">
-              <a href="/" class="btn btn-outline-danger">Reservar</a>
-            </div>
-          </form>
-        </div>
-      </div>
-</div>
-
-
+            <a href="/" class="btn btn-outline-danger">Reservar</a>
+           </div>
+         </form>
+       </div>
       
-    </div>
+     </div>
+     </div>
   );
 };
