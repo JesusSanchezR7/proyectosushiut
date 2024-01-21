@@ -8,6 +8,8 @@ import { Home } from "../components/home/home";
 import { Reservar } from "../components/reservar/reservar";
 import { Carrito } from "../components/carrito/carrito";
 
+import { Admin } from "../components/admin/admin";
+
 import  Menu  from "../components/menu/charolas";
 
 
@@ -34,6 +36,20 @@ const App = () => {
                 </div>
             }
           />
+
+            
+
+          <Route
+            path="/Admin"
+            element={
+              <div>
+                <Navbar onSearch={handleSearch} /> <br></br>
+                <Admin></ Admin>
+                </div>
+            }
+          />  
+          
+          
 
           <Route
             path="/Registro"

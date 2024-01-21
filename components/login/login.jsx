@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./login.css"; // Importa el archivo CSS
+import "./login.css"; 
 import iconImage from "../../img/icon.png";
 import backgroundImg from "../../img/srsushisanluis.jpeg";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [Correo, setCorreo] = useState("");
+  const [Contrasena, setContrasena] = useState("");
   const [loginError, setLoginError] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -17,29 +17,30 @@ export const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        correo: Correo,
+        contrasena: Contrasena,
         client_id: import.meta.env.VITE_CLIENT_ID,
         client_secret: import.meta.env.VITE_CLIENT_SECRET,
+        
       }),
     };
-
-    console.log(email);
-    console.log(password);
-
     try {
       const response = await fetch(import.meta.env.VITE_API_LOGIN, requestOptions);
+      console.log(requestOptions);
+      console.log(Correo);
+      console.log(Contrasena);
+
 
       if (response.ok) {
-        window.location.href = "/home"; // Redirigir si la respuesta es exitosa
+        window.location.href = "/Home"; 
       } else {
         const errorMessage = await response.text();
-        console.error("Error en inicio de sesión:", errorMessage);
-        setLoginError(true); // Mostrar mensaje de error si la respuesta no es exitosa
+        console.error(" error si la respuesta no es exitosa", errorMessage);
+        setLoginError(true); 
       }
     } catch (error) {
-      console.error("Error en inicio de sesión:", error);
-      setLoginError(true); // Mostrar mensaje de error si hay problemas con la solicitud
+      console.error("error si hay problemas con la solicitud", error);
+      setLoginError(true); 
     }
   };
 
@@ -54,21 +55,18 @@ export const Login = () => {
                   <img src={iconImage} alt="Logo" />
                 </div>
                 <legend>Iniciar sesión</legend>
-                {loginError && (
-                  <p style={{ color: "red" }}>Correo o contraseña incorrectos.</p>
-                )}
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1" className="form-label mt-4">
                     Correo electrónico
                   </label>
                   <input
-                    type="email"
+                    type="Correo"
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Ingresa tu correo electrónico"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={Correo}
+                    onChange={(e) => setCorreo(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -84,11 +82,12 @@ export const Login = () => {
                     id="exampleInputPassword1"
                     placeholder="Ingresa tu contraseña"
                     autoComplete="off"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={Contrasena}
+                    onChange={(e) => setContrasena(e.target.value)}
                   />
                 </div>
                 <br></br>
+                {loginError && (<p style={{ color: "red" }}>Correo o Contraseña Incorrectos.</p> )}
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-danger">
                     Iniciar sesión

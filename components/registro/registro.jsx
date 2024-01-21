@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import "./registro.css";
 
-
 export const Registro = () => {
   const [formData, setFormData] = useState({
     Nombre: "",
@@ -13,6 +12,8 @@ export const Registro = () => {
     Contrasena: "",
     Celular: ""
   });
+
+  const [error, setError] = useState(null); 
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -24,7 +25,7 @@ export const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch(import.meta.env.VITE_API_USERS, {
         method: 'POST',
@@ -36,29 +37,35 @@ export const Registro = () => {
         },
         body: JSON.stringify(formData),
       });
-  
-      const data = await response.json();
-      console.log("Datos enviados al servidor:", formData); // Agrega este console.log para mostrar los datos enviados
-      console.log("Respuesta de registro:", data);
-      // Aquí podrías redirigir al usuario a una página de éxito, mostrar un mensaje, etc.
+
+      if (response.ok) {
+        // Si la respuesta es exitosa, redirige a la página Home
+        window.location.href = "/Home";
+      } else {
+        // Si hay un error en la respuesta, puedes manejarlo aquí
+        console.error("Error en registro:", response.status, response.statusText);
+        setError("Hubo un error en el registro. Por favor, verifica tus datos e inténtalo de nuevo.");
+      }
     } catch (error) {
-      console.error("Error en registro:", error.response.status, error.response.data);
-      // Aquí puedes manejar el error, mostrar un mensaje de error al usuario, etc.
+      // Manejar errores de red, etc.
+      console.error("Error en registro:", error.message);
+      // Actualiza el estado para almacenar el mensaje de error
+      setError("Hubo un error en el registro. Por favor, verifica tu conexión a Internet e inténtalo de nuevo.");
     }
   };
-  
+
   return (
     <div className="registro-container">
-        <div className="image2-2">
-          <img src="../../img/srsushisanluis2.jpeg" alt="" />
-        </div>
+      <div className="image2-2">
+        <img src="../../img/srsushisanluis2.jpeg" alt="" />
+      </div>
       <div className="Registro">
         <div className="row justify-content-center">
           <div className="col-md">
             <form onSubmit={handleSubmit}>
               <fieldset>
-              <div className="image">
-               <img src="./img/icon.png" alt="Logo" />
+                <div className="image">
+                  <img src="./img/icon.png" alt="Logo" />
                 </div>
                 <legend>Crear Una Cuenta</legend>
                 <div className="row">
@@ -141,14 +148,15 @@ export const Registro = () => {
                         className="form-control"
                         id="Rol"
                         placeholder="Ingresa tu Rol"
-                        value={formData.Rol}
-                        onChange={handleChange}
+                        value="Cliente"
+                        readOnly
                       />
                     </div>
                   </div>
+                  {error && <p style={{ color: 'red' }}>{error}</p>} 
 
-                </div>
-                <div className="d-grid gap-2">
+
+                </div>                <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-danger">
                     Registrarse
                   </button>
@@ -161,9 +169,6 @@ export const Registro = () => {
           </div>
         </div>
       </div>
-    
     </div>
   );
-  
-
 };

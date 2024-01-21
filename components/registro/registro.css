@@ -90,30 +90,37 @@
 
 /* Media query para dispositivos más pequeños */
 @media screen and (max-width: 768px) {
-    .Registro {
-        max-width: 100%;
-        width: 90%;
-        height: 90%;
-        padding: 10px;    
-        font-size: 10px; 
-    }
-    .form-label{
-        font-size: 15px; 
-    }
-    .Registro legend {
-        font-size: 20px; 
-      
-      }
-    .form-group {
-        margin-bottom: 15px; /* Reducir el margen entre los elementos form-group */
-    }
-    .Registro legend {
-        margin-bottom: -30px; /* Reducir el margen inferior de legend */
-    }
-    .image2-2 {
-        display: none;
-      }
-      .image {
-        display: none;
-      }
+  .Registro {
+      max-width: 100%;
+      width: 90%;
+      height: 90%;
+      padding: 10px;    
+      font-size: 10px; 
+  }
+  .form-label {
+      font-size: 15px; 
+  }
+  .Registro legend {
+      font-size: 20px; 
+  }
+  .form-group {
+      margin-bottom: 15px; /* Reducir el margen entre los elementos form-group */
+  }
+  .Registro legend {
+      margin-bottom: -30px; /* Reducir el margen inferior de legend */
+  }
+  .image2-2 {
+      display: none;
+  }
+  .image {
+      display: none;
+  }
+  
+  /* Estilos para el mensaje de error */
+  .registro-container p {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px; /* Ajusta el espacio sobre el mensaje de error */
+  }
 }
+
