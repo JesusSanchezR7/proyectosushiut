@@ -1,0 +1,16 @@
+
+
+.encabezado{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.encabezado .menu{
+    display: flex;
+    gap: 40px;
+}
+
+.encabezado .menu-item {
+    margin-right: 10px;
+}

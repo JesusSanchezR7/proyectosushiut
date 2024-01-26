@@ -80,7 +80,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="https://lh3.googleusercontent.com/p/AF1QipMVuJvBC1j3K0OEn9pHsfBoBp5nSbPXecCgdEFq=s680-w680-h510"
+              src="../img/tienda1.jpg"
               alt="Imagen 1"
               style={carouselImgStyle}
             />
@@ -104,7 +104,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="https://lh3.googleusercontent.com/p/AF1QipNa1VLlpCx6MQiXTUTKI15c3bQnjMpygJ959TV3=s680-w680-h510"
+              src="../img/tienda2.jpg"
               alt="Imagen 1"
               style={carouselImgStyle}
             />

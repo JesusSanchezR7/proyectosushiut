@@ -60,7 +60,7 @@ export const Login = () => {
                     Correo electrónico
                   </label>
                   <input
-                    type="Correo"
+                    type="email"
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"

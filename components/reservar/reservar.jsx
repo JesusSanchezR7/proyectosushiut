@@ -31,7 +31,9 @@ export const Reservar = () => {
   };
 
   return (
+     
     <div className="reservar-container">
+      
       <div className="restauarnte1">
         <button onClick={() => handleReservarClick("Calzada Monterrey")}>Reservar</button>
       </div>
@@ -118,7 +120,7 @@ export const Reservar = () => {
               </div>
             </fieldset><br></br>
             <div className="d-grid">
-            <a href="/" class="btn btn-outline-danger">Reservar</a>
+            <a  class="btn btn-outline-danger">Reservar</a>
            </div>
          </form>
        </div>
