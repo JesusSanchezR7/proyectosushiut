@@ -1,14 +1,14 @@
 /* Estilos para el contenedor principal que cubre toda la pantalla */
 .reservar-container {
     position: fixed;
-    top: 0;
+    top: 55px;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../img/fondos/login2.png'); 
+    background-image: url('../../img/fondos/fondo.jpg'); 
     background-size: cover;
     background-position: center;
     font-family: Arial, sans-serif;
@@ -16,70 +16,121 @@
     z-index: -1;
 }
 
-.restauarnte1 {
-    width: 400px; /* Ancho de 400 píxeles */
-    height: 600px; /* Alto de 600 píxeles */
-    background-image: url('../../img/fondos/rest1.png'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
-    border: 0px solid #000; /* Borde de 1 píxel sólido negro */
+.tect-title {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  margin-bottom: 20px; /* Espacio inferior */
 }
 
-.restauarnte2 {
-    width: 400px; /* Ancho de 400 píxeles */
-    height: 600px; /* Alto de 600 píxeles */
-    background-image: url('../../img/fondos/rest2.png'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
-    border: 0px solid #000; /* Borde de 1 píxel sólido negro */
-}
 
-.restauarnte3 {
-    width: 400px; /* Ancho de 400 píxeles */
-    height: 600px; /* Alto de 600 píxeles */
-    background-image: url('../../img/fondos/rest3.png'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
-    border: 0px solid #000; /* Borde de 1 píxel sólido negro */
-}
 
 .Reservar {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 1200px;
-    height: 600px;
+    width: 1900px;
+    height: 580px;
     transform: translate(-50%, -50%);
-    background-color: rgb(252, 252, 247); /* Fondo semi-transparente */
+    background-color: rgb(255, 255, 255); /* Fondo semi-transparente */
     padding: 20px;
     border-radius: 10px;
     max-width: 80%;
   }
 
-.restauarnte1,
-.restauarnte2,
-.restauarnte3 {
-  width: 10cm;
+  
+  .sucursales1 {
+    width: 400px;
+    border: 0px;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  }
+  
+  .sucursales {
+    width: 400px; /* Establece el ancho de la imagen */
+    height: 400px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .card-sucursales {
+    padding: 20px;
+  }
+  
+  .card-title-sucursales {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-text-sucursales {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .btn-sucursales {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn-sucursales:hover {
+    background-color: #cd1818;
+  }
 
+  legend button {
+    float: right;
 }
 
-.restauarnte1 button,
-.restauarnte2 button,
-.restauarnte3 button {
-  width: 100%;
-  background-color: white;
-  border: none;
-  color: inherit; /* Usa el color del texto heredado para que sea visible */
-  cursor: pointer;
+.cards-container {
+  margin-top: 2px;
 }
 
-.restauarnte1 button:hover,
-.restauarnte2 button:hover,
-.restauarnte3 button:hover {
-  background-color: #cd1818; /* Cambia el fondo al pasar el ratón */
-  /* Puedes ajustar el color y la opacidad según tus preferencias */
+/* Estilos para la imagen pequena */
+.pequena {
+  display: none; /* Por defecto, la imagen pequeña estará oculta */
+  width: 40px; /* Establece el ancho de la imagen */
+  height: 40px;
 }
 
+
+/* Media Query para pantallas más grandes */
+@media only screen and (min-width: 768px) {
+  /* Ocultar la imagen pequeña en pantallas grandes */
+  .pequena {
+    display: none;
+  }
+
+  /* Mostrar la imagen sucursales en pantallas grandes */
+  .sucursales {
+    display: block;
+  }
+
+  .cards-container{
+    display: none;
+  }
+}
+
+/* Media Query para pantallas más pequeñas */
+@media only screen and (max-width: 767px) {
+
+
+  /* Ocultar la imagen sucursales en pantallas pequeñas */
+  .sucursales1 {
+    display: none;
+  }
+
+  .card-sucursales {
+    display: none;
+  }
+}
+  
   
   
 
@@ -90,14 +141,6 @@
       display: flex;
       flex-direction: column;
       align-items: center; /* Centrar los elementos horizontalmente */
-    }
-    
-    .restaurante1,
-    .restaurante2,
-    .restaurante3 {
-      width: 100%;
-      max-width: 300px; /* Ancho máximo para evitar ocupar toda la pantalla */
-      margin-bottom: 10px; /* Separación entre elementos */
     }
   
     .Reservar {
@@ -129,7 +172,8 @@
       border: 1px solid #dc3545; /* Color del borde */
       color: #dc3545; /* Color del texto */
     }
-  }
-  
+ 
+}
+
   
   

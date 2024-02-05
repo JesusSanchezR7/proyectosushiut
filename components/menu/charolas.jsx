@@ -84,40 +84,46 @@ export default function Charolas() {
                 </a>
               </div>
               <div id="categoria1" className="collapse-show" data-bs-parent="#accordion">
-                <div className="card-body row row-cols-1 row-cols-md-3 g-4">
-                  {products.map((product, index) => (
-                    <div key={index} className="col">
-                      <div className="card h-100">
-                      <div className="card-body">
-                          <h5 className="card-title">{product.Nombre__c}</h5>
-                          <h2 className="card-text">{product.Precio__c}$</h2>
-                          {product.quantity > 0 ? (
-                            <div className="row align-items-center">
-                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
-                              
-                              <button
-                                type="button"
-                                className="btn btn-danger w-100 mt-4"
-                                onClick={() => deleteItem(product.Id)}
-                              >
-                                REMOVER DEL CARRITO
-                              </button>
-                            </div>
-                          ) : (
-                            <button
-                              className="btn btn-danger w-100"
-                              onClick={() => addToCart(product.Id)}
-                            >
-                              AGREGAR AL CARRITO
-                            </button>
-                          )}
-                        </div>
+              <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+              {products
+                  .filter(product => {
+                      const productName = product.Nombre__c.toLowerCase();
+                      return productName.includes('combos') || productName.includes('combo');
+                  })
+                  .map((product, index) => (
+                      <div key={index} className="col">
+                          <div className="card h-100">
+                              <div className="card-body">
+                                  <h5 className="card-title">{product.Nombre__c}</h5>
+                                  <h2 className="card-text">{product.Precio__c}$</h2>
+                                  {product.quantity > 0 ? (
+                                      <div className="row align-items-center">
+                                          <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                          <button
+                                              type="button"
+                                              className="btn btn-danger w-100 mt-4"
+                                              onClick={() => deleteItem(product.Id)}
+                                          >
+                                              REMOVER DEL CARRITO
+                                          </button>
+                                      </div>
+                                  ) : (
+                                      <button
+                                          className="btn btn-danger w-100"
+                                          onClick={() => addToCart(product.Id)}
+                                      >
+                                          AGREGAR AL CARRITO
+                                      </button>
+                                  )}
+                              </div>
+                          </div>
                       </div>
-                    </div>
                   ))}
-                </div>
+          </div>
               </div>
             </div>
+
             <div class="card">
             <div class="card-header"style={{ backgroundColor: "black" }}>
               <a class="collapsed btn" data-bs-toggle="collapse" href="#categoria2">
@@ -125,10 +131,46 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria2" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-                </div>
-            </div>
+              <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('charola') || productName.includes('charola');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div>
           </div>
+          </div>
+
           <div class="card">
             <div class="card-header"style={{ backgroundColor: "black" }}>
               <a class="collapsed btn" data-bs-toggle="collapse" href="#categoria3">
@@ -136,8 +178,43 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria3" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-                </div>
+                  <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+              {products
+                  .filter(product => {
+                      const productName = product.Nombre__c.toLowerCase();
+                      return productName.includes('Entradas') || productName.includes('Entrada');
+                  })
+                  .map((product, index) => (
+                      <div key={index} className="col">
+                          <div className="card h-100">
+                              <div className="card-body">
+                                  <h5 className="card-title">{product.Nombre__c}</h5>
+                                  <h2 className="card-text">{product.Precio__c}$</h2>
+                                  {product.quantity > 0 ? (
+                                      <div className="row align-items-center">
+                                          <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                          <button
+                                              type="button"
+                                              className="btn btn-danger w-100 mt-4"
+                                              onClick={() => deleteItem(product.Id)}
+                                          >
+                                              REMOVER DEL CARRITO
+                                          </button>
+                                      </div>
+                                  ) : (
+                                      <button
+                                          className="btn btn-danger w-100"
+                                          onClick={() => addToCart(product.Id)}
+                                      >
+                                          AGREGAR AL CARRITO
+                                      </button>
+                                  )}
+                              </div>
+                          </div>
+                      </div>
+                  ))}
+          </div>
             </div>
           </div>
           <div class="card">
@@ -149,9 +226,83 @@ export default function Charolas() {
             <div id="categoria4" class="collapse" data-bs-parent="#accordion">
               <div class="card-body">
                 <h3>TRADICIONALES</h3>
+                <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                {products
+                    .filter(product => {
+                        const productName = product.Nombre__c.toLowerCase();
+                        return productName.includes('tradicional') || productName.includes('sushi');
+                    })
+                    .map((product, index) => (
+                        <div key={index} className="col">
+                            <div className="card h-100">
+                                <div className="card-body">
+                                    <h5 className="card-title">{product.Nombre__c}</h5>
+                                    <h2 className="card-text">{product.Precio__c}$</h2>
+                                    {product.quantity > 0 ? (
+                                        <div className="row align-items-center">
+                                            <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                            <button
+                                                type="button"
+                                                className="btn btn-danger w-100 mt-4"
+                                                onClick={() => deleteItem(product.Id)}
+                                            >
+                                                REMOVER DEL CARRITO
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            className="btn btn-danger w-100"
+                                            onClick={() => addToCart(product.Id)}
+                                        >
+                                            AGREGAR AL CARRITO
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+            </div>
                  </div>
               <div class="card-body">
               <h3>VIP</h3>
+              <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+              {products
+                  .filter(product => {
+                      const productName = product.Nombre__c.toLowerCase();
+                      return productName.includes('VIP') || productName.includes('sushi');
+                  })
+                  .map((product, index) => (
+                      <div key={index} className="col">
+                          <div className="card h-100">
+                              <div className="card-body">
+                                  <h5 className="card-title">{product.Nombre__c}</h5>
+                                  <h2 className="card-text">{product.Precio__c}$</h2>
+                                  {product.quantity > 0 ? (
+                                      <div className="row align-items-center">
+                                          <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                          <button
+                                              type="button"
+                                              className="btn btn-danger w-100 mt-4"
+                                              onClick={() => deleteItem(product.Id)}
+                                          >
+                                              REMOVER DEL CARRITO
+                                          </button>
+                                      </div>
+                                  ) : (
+                                      <button
+                                          className="btn btn-danger w-100"
+                                          onClick={() => addToCart(product.Id)}
+                                      >
+                                          AGREGAR AL CARRITO
+                                      </button>
+                                  )}
+                              </div>
+                          </div>
+                      </div>
+                  ))}
+          </div>
                  </div>
             </div>
           </div>
@@ -162,8 +313,43 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria5" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-                 </div>
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('teriyaqui');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div>
             </div>
           </div>
           <div class="card">
@@ -173,8 +359,43 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria6" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-                </div>  
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('wings');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div>  
             </div>
           </div>
           <div class="card" >
@@ -184,8 +405,43 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria7" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-               </div>
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('Hamburgesa');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div> 
             </div>
           </div>
           <div class="card">
@@ -195,13 +451,141 @@ export default function Charolas() {
               </a>
             </div>
             <div id="categoria8" class="collapse" data-bs-parent="#accordion">
-              <div class="card-body">
-               </div>
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('ramen');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div> 
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"style={{ backgroundColor: "black" }}>
+              <a class="collapsed btn" data-bs-toggle="collapse" href="#categoria9">
+              <h1  style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem", textAlign: "center", color: "white" }}>OTROS</h1>
+              </a>
+            </div>
+            <div id="categoria9" class="collapse" data-bs-parent="#accordion">
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('otros') || productName.includes('Ensalda');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div> 
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"style={{ backgroundColor: "black" }}>
+              <a class="collapsed btn" data-bs-toggle="collapse" href="#categoria10">
+              <h1  style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem", textAlign: "center", color: "white" }}>ENSALADAS</h1>
+              </a>
+            </div>
+            <div id="categoria10" class="collapse" data-bs-parent="#accordion">
+            <div className="card-body row row-cols-1 row-cols-md-3 g-4">
+                  {products
+                      .filter(product => {
+                          const productName = product.Nombre__c.toLowerCase();
+                          return productName.includes('E');
+                      })
+                      .map((product, index) => (
+                          <div key={index} className="col">
+                              <div className="card h-100">
+                                  <div className="card-body">
+                                      <h5 className="card-title">{product.Nombre__c}</h5>
+                                      <h2 className="card-text">{product.Precio__c}$</h2>
+                                      {product.quantity > 0 ? (
+                                          <div className="row align-items-center">
+                                              <div className="col-6">PRODUCTOS: {product.quantity}</div>
+
+                                              <button
+                                                  type="button"
+                                                  className="btn btn-danger w-100 mt-4"
+                                                  onClick={() => deleteItem(product.Id)}
+                                              >
+                                                  REMOVER DEL CARRITO
+                                              </button>
+                                          </div>
+                                      ) : (
+                                          <button
+                                              className="btn btn-danger w-100"
+                                              onClick={() => addToCart(product.Id)}
+                                          >
+                                              AGREGAR AL CARRITO
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+              </div> 
             </div>
           </div>
           </div>
         </div>
       </div>
+
       <Modal show={showCartModal} onHide={handleCloseCartModal}>
         <Modal.Header closeButton>
           <Modal.Title>Contenido del Carrito</Modal.Title>

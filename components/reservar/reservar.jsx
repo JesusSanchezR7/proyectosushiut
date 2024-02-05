@@ -23,7 +23,7 @@ export const Reservar = () => {
     setSelectedPlace(place); // Establecer el lugar de reservación al hacer clic en el botón
     const modal = document.querySelector(".Reservar");
     modal.style.display = "block";
-  };
+};
 
   const handleCloseModal = () => {
     const modal = document.querySelector(".Reservar");
@@ -31,25 +31,115 @@ export const Reservar = () => {
   };
 
   return (
-     
+    <div className="container">
+          <h4 className="tect-title"> ELIGE TU LOCAL Y RESERVA TU MESA CON NOSTROS </h4>
     <div className="reservar-container">
-      
-      <div className="restauarnte1">
-        <button onClick={() => handleReservarClick("Calzada Monterrey")}>Reservar</button>
+
+      <div className="sucursales1" style={{ width: "400px" }}>
+      <img className="sucursales" src="../../img/fondos/local1.jpeg" alt="Card image" />
+      <div className="card-sucursales">
+        <h4 className="card-title-sucursales">Calzada Monterrey</h4>
+        <p className="card-text-sucursales">San Luis Rio Colorado </p>
+        <button onClick={() => handleReservarClick("Calzada Monterrey")} className="btn-sucursales ">Reservar</button>
       </div>
-      <div className="restauarnte2">
-        <button onClick={() => handleReservarClick("Libertad y 43")}>Reservar</button>
+    </div>
+
+    <div className="sucursales1" style={{ width: "400px" }}>
+      <img className="sucursales" src="../../img/fondos/local2.jpeg" alt="Card image" />
+      <div className="card-sucursales">
+        <h4 className="card-title-sucursales">Libertad y 43</h4>
+        <p className="card-text-sucursales">San Luis Rio Colorado </p>
+        <button onClick={() => handleReservarClick("Libertad y 43")} className="btn-sucursales">Reservar</button>
       </div>
-      <div className="restauarnte3">
-        <button onClick={() => handleReservarClick("Av Insurgentes y 2da Cd. Gpe Victoria")}>Reservar</button>
+    </div>
+
+    <div className="sucursales1" style={{ width: "400px" }}>
+      <img className="sucursales" src="../../img/fondos/local3.jpeg" alt="Card image" />
+      <div className="card-sucursales">
+        <h4 className="card-title-sucursales">Av Insurgentes y 2da </h4>
+        <p className="card-text-sucursales">Cd. Gpe Victoria </p>
+        <button onClick={() => handleReservarClick("Av Insurgentes y 2da Cd. Gpe Victoria")} className="btn-sucursales ">Reservar</button>
+      </div>
+    </div>
+  /</div>
+
+
+{/*   ------------ --------------------  */}
+    <div className="cards-container">
+    <div className="row d-flex justify-content align-items-center ">
+        <div className="card" style={{ borderRadius: "15px" }}>
+          <div className="card-body p-4">
+            <div className="d-flex text-black">
+              <div className="flex-shrink-0">
+                <img
+                  src="../../img/fondos/local1.jpeg"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                  style={{ width: "150px", borderRadius: "10px" }}
+                />
+              </div>
+              <div className="flex-grow-1 ms-3">
+                <h5 className="mb-1">Calzada Monterrey</h5>
+                <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>San Luis Rio Colorado, Sonora  </p>
+                <div className="d-flex pt-1">
+                <button onClick={() => handleReservarClick("Calzada Monterrey")} className="btn-sucursales flex-grow-1 ">Reservar</button>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
+        <div className="card" style={{ borderRadius: "15px" }}>
+          <div className="card-body p-4">
+            <div className="d-flex text-black">
+              <div className="flex-shrink-0">
+                <img
+                  src="../../img/fondos/local2.jpeg"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                  style={{ width: "150px", borderRadius: "10px" }}
+                />
+              </div>
+              <div className="flex-grow-1 ms-3">
+                <h5 className="mb-1">Libertad y 43</h5>
+                <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>San Luis Rio Colorado, Sonora  </p>
+                <div className="d-flex pt-1">
+                <button onClick={() => handleReservarClick("Libertad y 43")} className="btn-sucursales flex-grow-1">Reservar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+       <div className="card" style={{ borderRadius: "15px" }}>
+          <div className="card-body p-4">
+            <div className="d-flex text-black">
+              <div className="flex-shrink-0">
+                <img
+                  src="../../img/fondos/local3.jpeg"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                  style={{ width: "150px", borderRadius: "10px" }}
+                />
+              </div>
+              <div className="flex-grow-1 ms-3">
+                <h5 className="mb-1">Av Insurgentes y 2da</h5>
+                <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>Cd. Gpe Victoria </p>
+                <div className="d-flex pt-1">
+                  <button onClick={() => handleReservarClick("Av Insurgentes y 2da Cd. Gpe Victoria")} className="btn-sucursales flex-grow-1 ">Reservar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
       <div className="Reservar" style={{ display: "none" }}>
     <div className="row justify-content-center">
           <form>
             <fieldset>
               <legend>Reservar  <button className="btn  btn-outline-danger" onClick={handleCloseModal}>
-              close
+              x
             </button></legend>
               <div className="form-group">
                 <label htmlFor="inputName" className="form-label mt-4">
@@ -119,8 +209,8 @@ export const Reservar = () => {
                 </div>
               </div>
             </fieldset><br></br>
-            <div className="d-grid">
-            <a  class="btn btn-outline-danger">Reservar</a>
+            <div className="">
+            <a  class="btn btn-danger btn-lg">Reservar</a>
            </div>
          </form>
        </div>
