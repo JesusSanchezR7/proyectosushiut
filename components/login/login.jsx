@@ -15,12 +15,15 @@ export const Login = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'client_id': import.meta.env.VITE_CLIENT_ID,
+          'client_secret': import.meta.env.VITE_CLIENT_SECRET,
+          Accept: "application/json",
+
       },
       body: JSON.stringify({
-        correo: Correo,
-        contrasena: Contrasena,
-        client_id: import.meta.env.VITE_CLIENT_ID,
-        client_secret: import.meta.env.VITE_CLIENT_SECRET,
+        Correo: Correo,
+        Contrasena: Contrasena,
+        
         
       }),
     };
