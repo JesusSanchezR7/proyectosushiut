@@ -34,21 +34,20 @@ export const Reservar = () => {
     <div className="container">
           <h4 className="tect-title"> ELIGE TU LOCAL Y RESERVA TU MESA CON NOSTROS </h4>
     <div className="reservar-container">
-
       <div className="sucursales1" style={{ width: "400px" }}>
       <img className="sucursales" src="../../img/fondos/local1.jpeg" alt="Card image" />
       <div className="card-sucursales">
-        <h4 className="card-title-sucursales">Calzada Monterrey</h4>
-        <p className="card-text-sucursales">San Luis Rio Colorado </p>
-        <button onClick={() => handleReservarClick("Calzada Monterrey")} className="btn-sucursales ">Reservar</button>
+        <h4 className="card-title-sucursales">Señor Sushi</h4>
+        <p className="card-text-sucursales">Calz Monterrey, La Grullita, 83470 San Luis Río Colorado, Son. </p>
+        <button onClick={() => handleReservarClick("Calzada Monterrey")} className="btn-sucursales flex-grow-1 ">Reservar</button>
       </div>
     </div>
 
     <div className="sucursales1" style={{ width: "400px" }}>
       <img className="sucursales" src="../../img/fondos/local2.jpeg" alt="Card image" />
       <div className="card-sucursales">
-        <h4 className="card-title-sucursales">Libertad y 43</h4>
-        <p className="card-text-sucursales">San Luis Rio Colorado </p>
+        <h4 className="card-title-sucursales">Señor Sushi 43</h4>
+        <p className="card-text-sucursales">Av Libertad & C.43 10 de Abril, 83458 San Luis Río Colorado, Son. </p>
         <button onClick={() => handleReservarClick("Libertad y 43")} className="btn-sucursales">Reservar</button>
       </div>
     </div>
@@ -56,12 +55,12 @@ export const Reservar = () => {
     <div className="sucursales1" style={{ width: "400px" }}>
       <img className="sucursales" src="../../img/fondos/local3.jpeg" alt="Card image" />
       <div className="card-sucursales">
-        <h4 className="card-title-sucursales">Av Insurgentes y 2da </h4>
-        <p className="card-text-sucursales">Cd. Gpe Victoria </p>
+        <h4 className="card-title-sucursales">Señor Sushi KM 43</h4>
+        <p className="card-text-sucursales">Av Insurgentes y calle 2da, 21720 Cdad. Guadalupe Victoria, B.C.</p>
         <button onClick={() => handleReservarClick("Av Insurgentes y 2da Cd. Gpe Victoria")} className="btn-sucursales ">Reservar</button>
       </div>
     </div>
-  /</div>
+  </div>
 
 
 {/*   ------------ --------------------  */}
