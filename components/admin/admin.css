@@ -1,4 +1,4 @@
-
+/* Css Admin*/
 .encabezado{
     display: flex;
     align-items: center;
@@ -119,23 +119,22 @@
     margin-right: 5px;
   }
   
-  /* Estilos específicos para los botones de editar y eliminar */
   .table-action-buttons .btn-edit {
     color: #fff;
-    background-color: #007bff; /* Color azul para editar */
+    background-color: #007bff; 
     border-color: #007bff;
   }
   
   .table-action-buttons .btn-edit:hover {
-    background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+    background-color: #0056b3; 
   }
   
   .table-action-buttons .btn-delete {
     color: #fff;
-    background-color: #dc3545; /* Color rojo para eliminar */
+    background-color: #dc3545; 
     border-color: #dc3545;
   }
   
   .table-action-buttons .btn-delete:hover {
-    background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+    background-color: #c82333; 
   }

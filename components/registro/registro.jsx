@@ -39,18 +39,14 @@ export const Registro = () => {
       });
 
       if (response.ok) {
-        // Si la respuesta es exitosa, redirige a la página Home
         window.location.href = "/Home";
       } else {
-        // Si hay un error en la respuesta, puedes manejarlo aquí
         console.error("Error en registro:", response.status, response.statusText);
         setError("Hubo un error en el registro. Por favor, verifica tus datos e inténtalo de nuevo.");
       }
     } catch (error) {
-      // Manejar errores de red, etc.
       console.error("Error en registro:", error.message);
-      // Actualiza el estado para almacenar el mensaje de error
-      setError("Hubo un error en el registro. Por favor, verifica tu conexión a Internet e inténtalo de nuevo.");
+      setError("Hubo un error en el registro.");
     }
   };
 
@@ -154,9 +150,8 @@ export const Registro = () => {
                     </div>
                   </div>
                   {error && <p style={{ color: 'red' }}>{error}</p>} 
-
-
-                </div>                <div className="d-grid gap-2">
+                </div>               
+                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-danger">
                     Registrarse
                   </button>

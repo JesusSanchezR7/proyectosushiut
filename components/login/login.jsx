@@ -22,9 +22,7 @@ export const Login = () => {
       },
       body: JSON.stringify({
         Correo: Correo,
-        Contrasena: Contrasena,
-        
-        
+        Contrasena: Contrasena, 
       }),
     };
     try {

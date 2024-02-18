@@ -604,7 +604,6 @@ export default function Charolas() {
               <p>Precio: {item.Precio__c}$</p>
               <hr/>
             </div>
-
           ))}
         </Modal.Body>
         <Modal.Footer> <Button variant="secondary" onClick={redirigirAEnlace}> REALIZAR COMPRAR </Button>

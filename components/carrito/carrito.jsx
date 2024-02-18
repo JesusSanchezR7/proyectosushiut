@@ -7,7 +7,6 @@ export const Carrito = () => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    // Función asincrónica para obtener un producto específico desde la API por su ID
     const fetchProduct = async () => {
       const productId = "a0BHs00000XHhf4MAD"; // Aquí debes definir el ID específico que necesitas
       const requestOptions = {
@@ -20,9 +19,8 @@ export const Carrito = () => {
       try {
         const data = await fetch(`${import.meta.env.VITE_API_KART}/${productId}`, requestOptions);
         const productData = await data.json();
-        // Establece el producto obtenido en el estado
         setProducto(productData);
-        console.log(productData); // Muestra en consola el producto obtenido
+        //console.log(productData); 
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -30,7 +28,7 @@ export const Carrito = () => {
 
     // Llama a la función para obtener el producto al cargar el componente
     fetchProduct();
-  }, []); // El segundo argumento [] asegura que se ejecute solo una vez al montar el componente
+  }, []); 
 
   const calcularTotal = () => {
     if (producto) {

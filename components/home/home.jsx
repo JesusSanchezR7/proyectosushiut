@@ -4,7 +4,6 @@ import { Carousel, Button } from "react-bootstrap";
 
 export const Home = () => {
   const [contactInfo, setContactInfo] = useState({
-    // Aquí puedes agregar la información de contacto
     phone: "653 517 0396",
     email: "facturasenorsushi@gmail.com",
     address: "C. 43 4300, Progreso, 83458 San Luis Río Colorado, Son.",
@@ -44,7 +43,7 @@ export const Home = () => {
   };
 
   const handleContactClick = () => {
-    // Función para manipular el contacto si es necesario
+    // Función para manipular el contacto 
   };
 
   return (
@@ -139,9 +138,7 @@ export const Home = () => {
               Email: {contactInfo.email} <br />
               Dirección: {contactInfo.address}
             </p>
-            {/* Agrega más información de contacto si es necesario */}
           </div>
-          {/* Agrega más columnas o información de contacto si es necesario */}
         </div>
       </div>
     </div>
