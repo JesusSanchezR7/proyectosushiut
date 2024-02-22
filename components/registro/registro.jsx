@@ -135,7 +135,7 @@ export const Registro = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" style={{ display: 'none' }} id="componenteInvisible">
                       <label htmlFor="Rol" className="form-label mt-4">
                         Rol
                       </label>

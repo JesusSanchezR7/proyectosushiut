@@ -27,10 +27,10 @@
 
 .Reservar {
   position: fixed;
-  top: 50%;
+  top: 11cm;
   left: 50%;
-  width: 1900px;
-  height: 580px;
+  width: 45cm;
+  height: 631px;
   transform: translate(-50%, -50%);
   background-color: rgb(255, 255, 255); /* Fondo semi-transparente */
   padding: 20px;

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./login.css"; 
 import iconImage from "../../img/icon.png";
 import backgroundImg from "../../img/srsushisanluis.jpeg";
+import Cookies from 'universal-cookie';
 
 export const Login = () => {
   const [Correo, setCorreo] = useState("");
   const [Contrasena, setContrasena] = useState("");
   const [loginError, setLoginError] = useState(false);
+  const cookies = new Cookies(); // Crear una instancia de Cookies
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +18,8 @@ export const Login = () => {
       headers: {
         "Content-Type": "application/json",
         'client_id': import.meta.env.VITE_CLIENT_ID,
-          'client_secret': import.meta.env.VITE_CLIENT_SECRET,
-          Accept: "application/json",
-
+        'client_secret': import.meta.env.VITE_CLIENT_SECRET,
+        Accept: "application/json",
       },
       body: JSON.stringify({
         Correo: Correo,
@@ -27,16 +28,16 @@ export const Login = () => {
     };
     try {
       const response = await fetch(import.meta.env.VITE_API_LOGIN, requestOptions);
-      console.log(requestOptions);
-      console.log(Correo);
-      console.log(Contrasena);
-
-
+      
       if (response.ok) {
+        const responseData = await response.json();
+        const idCliente = responseData.Id; // Suponiendo que el campo 'Id' contiene el ID del cliente
+        console.log('ID del cliente:', idCliente); // Agregar un console.log para imprimir el ID del cliente
+        cookies.set('idCliente', idCliente, { path: '/' }); // Establecer la cookie con el ID del cliente
         window.location.href = "/Home"; 
       } else {
         const errorMessage = await response.text();
-        console.error(" error si la respuesta no es exitosa", errorMessage);
+        console.error("error si la respuesta no es exitosa", errorMessage);
         setLoginError(true); 
       }
     } catch (error) {

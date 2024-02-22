@@ -129,20 +129,32 @@ export const Home = () => {
       <div className="d-flex justify-content-center">
       <img src="./img/promocion.png" alt="Descripción de la imagen" />
     </div>
-      <div className="container mt-4" style={contactStyle}>
-        <div className="row">
-          <div className="col-md-6">
-            <h2>Contacto</h2>
-            <p>
-              Teléfono: {contactInfo.phone} <br />
-              Email: {contactInfo.email} <br />
-              Dirección: {contactInfo.address}
-            </p>
+              {/* Footer mejorado */}
+              <footer style={{ backgroundColor: "#333", color: "#fff", padding: "20px 0", textAlign: "center", marginTop: "40px" }}>
+          <div className="container_footer">
+            <div className="row">
+              <div className="col-md-6">
+                <h4>Contacto</h4>
+                <p>
+                Teléfono: {contactInfo.phone} <br />
+                Email: {contactInfo.email} <br />
+                Dirección: {contactInfo.address}
+              </p>
+              </div>
+              <div className="col-md-6">
+                <h4>Síguenos en Redes Sociales</h4>
+                <p>¡No te pierdas nuestras promociones y novedades!</p>
+                {/* Agrega aquí los íconos de redes sociales */}
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <p>&copy; 2024 UT_MasterCodi. Todos los derechos reservados.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </footer>
     </div>
   </div>
   );
 };
-
