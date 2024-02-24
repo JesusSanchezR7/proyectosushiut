@@ -1,11 +1,91 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Toast} from "react-bootstrap";
 
 export default function Charolas() {
-  const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]); 
-  const [showCartModal, setShowCartModal] = useState(false);
-  
+    const [products, setProducts] = useState([]);
+    const [cartItems, setCartItems] = useState([]); 
+
+    const [showCartModal, setShowCartModal] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [showWarningToast, setShowWarningToast] = useState(false);
+
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [clientId, setClientId] = useState('');
+
+    useEffect(() => {
+        // Función para obtener el valor de una cookie por su nombre
+        const getCookie = (name) => {
+            const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return cookieValue ? cookieValue.pop() : '';
+        };
+        const clientIdFromCookie = getCookie('idCliente');    
+        const decodedClientId = decodeURIComponent(clientIdFromCookie);
+        const cleanClientId = decodedClientId.substring(2, decodedClientId.length - 2); // Eliminar los corchetes
+        console.log(cleanClientId);
+        setClientId(cleanClientId);
+    }, []);
+    
+
+    // Dentro del componente Charolas
+    const handleProductSelect = (productId) => {
+        setSelectedProduct(productId); // Actualiza selectedProduct con el ID del producto seleccionado
+    };
+    
+
+    // Función para realizar la solicitud POST a la API para realizar la compra
+    const makePurchase = async () => {
+        console.log('selectedProduct:', selectedProduct);
+        console.log('clientId:', clientId);
+    
+        if (selectedProduct && clientId) {
+            const productIds = []; // Array para almacenar los IDs de los productos
+    
+            // Obtener todos los elementos <h6> dentro del Modal.Body
+            const h6Elements = document.querySelectorAll('.modal-body h6');
+    
+            // Iterar sobre los elementos para obtener los IDs de los productos
+            h6Elements.forEach(element => {
+                // Obtener el texto del elemento y limpiarlo para obtener solo el ID del producto
+                const productId = element.textContent.trim();
+                productIds.push(productId); // Agregar ID del producto al array
+            });
+    
+            // Ahora productIds contiene los IDs de todos los productos
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    client_id: import.meta.env.VITE_CLIENT_ID,
+                    client_secret: import.meta.env.VITE_CLIENT_SECRET,
+                },
+                body: JSON.stringify({
+                    IdUsuario: clientId,
+                    IdProductos: productIds, // Enviar todos los IDs de productos
+                }),
+            };
+    
+            try {
+                console.log('Datos enviados a la API:', JSON.stringify({
+                    IdUsuario: clientId,
+                    IdProductos: productIds,
+                }));
+    
+                const response = await fetch(import.meta.env.VITE_API_KART, requestOptions);
+                if (response.ok) {
+                    // La solicitud fue exitosa
+                    console.log("Compra realizada con éxito!");
+                } else {
+                    console.error("Error al realizar la compra");
+                }
+            } catch (error) {
+                console.error("Error al realizar la compra:", error);
+            }
+        } else {
+            console.error("Error: No se ha seleccionado un producto o no se ha obtenido el id del cliente");
+        }
+    };
+    
+
     //MUESTRA LOS PRODUCTOS DE LA API 
     const productList = async () => {
         const requestOptions = {
@@ -30,31 +110,33 @@ export default function Charolas() {
 
     //Agregar a carrito
     const addToCart = (productId) => {
-    const selected = products.find(product => product.Id === productId);
-    const existingCartItem = cartItems.find(item => item.Id === productId);
-    // Verificar si la cantidad total de productos en el carrito es menor que 10
-    if (calculateTotalItems() < 10) {
-      if (existingCartItem) {
-        const updatedCartItems = cartItems.map(item => {
-          if (item.Id === productId) {
-            return {
-              ...item,
-              quantity: item.quantity + 1,
-            };
-          }
-          return item;
-        });
-        setCartItems(updatedCartItems);
-      } else {
-        const newCartItem = {
-          ...selected,
-          quantity: 1,
-        };
-        setCartItems([...cartItems, newCartItem]);
-      }
-    } else {
-       alert('Solo puedes agregar hasta 10 productos al carrito.');
-     }
+        const selected = products.find(product => product.Id === productId);
+        const existingCartItem = cartItems.find(item => item.Id === productId);
+        
+        if (calculateTotalItems() < 10) {
+            if (existingCartItem) {
+                const updatedCartItems = cartItems.map(item => {
+                    if (item.Id === productId) {
+                        return {
+                            ...item,
+                            quantity: item.quantity + 1,
+                        };
+                    }
+                    return item;
+                });
+                setCartItems(updatedCartItems);
+            } else {
+                const newCartItem = {
+                    ...selected,
+                    quantity: 1,
+                };
+                setCartItems([...cartItems, newCartItem]);
+            }
+            // Mostrar notificación de producto agregado
+            setShowToast(true);
+        } else {
+            setShowWarningToast(true);
+        }
     };
   
     // Eliminar del carrito
@@ -99,8 +181,6 @@ export default function Charolas() {
         setShowCartModal(false);
     };
 
- 
-  
   return (
     <div className="container">
       <div className="row">
@@ -109,10 +189,10 @@ export default function Charolas() {
         {calculateTotalItems() > 0 && (
         <span style={{ position: "absolute", top: "-10px", right: "-10px", fontSize: "19px", backgroundColor: "#cd1818", color: "#fff", borderRadius: "50%", padding: "5px", width: "40px", height: "40px", textAlign: "center" }}>
         {calculateTotalItems()}
-            </span>
+        </span>
         )}
         </button>
-        <div className="col-12 text-center">
+        <div className="col-12 text-center"> 
           <h5>ENCUENTRA TUS FAVORITOS</h5>
           <h1>EXPLORA NUESTRO MENÚ</h1>
           <div id="accordion">
@@ -144,12 +224,11 @@ export default function Charolas() {
                                         style={{ width: "150px",height:"122px", borderRadius: "10px" }}
                                     />
                                     </div>
-
                                     <div className="flex-grow-1 ms-3">
                                     <h6 className="mb-1">{product.Nombre__c}</h6>
                                     <h2 className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>{product.Precio__c} </h2>
                                     <div className="d-flex pt-1">
-                                        <button className="btn btn-danger mr-2" onClick={() => addToCart(product.Id)}> Agregar </button>
+                                    <button  className="btn btn-danger w-100" onClick={() => addToCart(product.Id)}>Agregar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -303,32 +382,32 @@ export default function Charolas() {
                         })
                         .map((product, index) => (
                             <div key={index} className="col">
-                            <div className="card" style={{ borderRadius: "15px" }}>
-                                <div className="card-body p-4">
-                                <div className="d-flex text-black">
-                                    
-                                    <div className="flex-shrink-0">
-                                    <img
-                                        src={product.Imagen__c}
-                                        alt="Señor Sushi"
-                                        className="img-fluid"
-                                        style={{ width: "150px",height:"122px", borderRadius: "10px" }}
-                                    />
-                                    </div>
+                                <div className="card" style={{ borderRadius: "15px" }}>
+                                    <div className="card-body p-4">
+                                    <div className="d-flex text-black">
+                                        
+                                        <div className="flex-shrink-0">
+                                        <img
+                                            src={product.Imagen__c}
+                                            alt="Señor Sushi"
+                                            className="img-fluid"
+                                            style={{ width: "150px",height:"122px", borderRadius: "10px" }}
+                                        />
+                                        </div>
 
-                                    <div className="flex-grow-1 ms-3">
-                                    <h6 className="mb-1">{product.Nombre__c}</h6>
-                                    <h2 className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>{product.Precio__c} </h2>
-                                    <div className="d-flex pt-1">
-                                    <button  className="btn btn-danger w-100" onClick={() => addToCart(product.Id)}>Agregar al arrito</button>
+                                        <div className="flex-grow-1 ms-3">
+                                        <h6 className="mb-1">{product.Nombre__c}</h6>
+                                        <h2 className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>{product.Precio__c} </h2>
+                                        <div className="d-flex pt-1">
+                                        <button  className="btn btn-danger w-100" onClick={() => addToCart(product.Id)}>Agregar al arrito</button>
+                                        </div>
+                                        </div>
                                     </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
-                        </div>
-                        ))}
-                </div>
+                            ))}
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -599,25 +678,74 @@ export default function Charolas() {
           </div>
         </div>
       </div>
+     
+      {/* MENSAJE DE QUE SE AGREGO EL PRODUCTO*/}
+      <Toast
+            onClose={() => setShowToast(false)}
+            show={showToast}
+            delay={3000}
+            autohide
+            style={{
+                position: 'fixed',
+                top: 20,
+                right: 20,
+                zIndex: 1,
+                backgroundColor: "#ffffff",
+            }}
+        >
+            <Toast.Header>
+                <strong className="me-auto">Notificación</strong>
+            </Toast.Header>
+            <Toast.Body>¡Producto agregado al carrito!</Toast.Body>
+      </Toast>
+      
+      {/* MENSAJE se paso limite de gregar productos*/}
+      <Toast
+            onClose={() => setShowWarningToast(false)}
+            show={showWarningToast}
+            delay={3000}
+            autohide
+            bg="warning"
+            style={{
+                position: 'fixed',
+                top: 20,
+                right: 20,
+                zIndex: 1,
+            }}
+        >
+            <Toast.Header>
+                <strong className="me-auto">Advertencia</strong>
+            </Toast.Header>
+            <Toast.Body>Solo puedes agregar hasta 10 productos al carrito.</Toast.Body>
+      </Toast>
+
+      
       <Modal show={showCartModal} onHide={handleCloseCartModal}>
         <Modal.Header closeButton>
             <Modal.Title>Contenido del Carrito</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+            <Modal.Body>
             {cartItems.map((item, index) => (
-            <div key={index}>
-                <h5>{item.Nombre__c}</h5>
-                <p>Precio: {item.Precio__c}$</p>
-                <p>Cantidad: {item.quantity}</p> {/* Agregar esta línea para mostrar la cantidad */}
-                <button className="btn btn-outline-danger" onClick={() => removeFromCart(item.Id)}>Eliminar del carrito</button>
-                <hr/>
+                <div className="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 className="card-title">{item.Nombre__c}</h5>
+                    <p>Precio: {item.Precio__c}$</p>
+                    <p>Cantidad: {item.quantity}</p>
+                </div>
+                <div>
+                    <button className="btn btn-outline-danger" onClick={() => removeFromCart(item.Id)}>ELIMINAR DE CARRITO</button>
+                    {/* Agrega un botón para seleccionar el producto */}
+                    <button className="btn btn-primary" onClick={() => handleProductSelect(item.Id)}>Seleccionar</button>
+                    {/* Muestra el ID del producto */}
+                    <h6 style={{ visibility: "hidden", display: 'none' }}>{item.Id}</h6>
+                </div>
             </div>
             ))}
-        </Modal.Body>
-        <Modal.Footer>
-            <h6 className="total-price">Total: {calculateTotal()}$</h6>
-            <Button variant="primary">REALIZAR COMPRAR</Button>
-        </Modal.Footer>
+            </Modal.Body>
+            <Modal.Footer className="d-flex justify-content-between">
+                <h6 className="total-price" >Total: {calculateTotal()}$</h6>
+                <Button variant="primary" onClick={makePurchase}>REALIZAR COMPRA</Button>
+            </Modal.Footer>
         </Modal>
     </div>
   );
