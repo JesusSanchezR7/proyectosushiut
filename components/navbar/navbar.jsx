@@ -50,6 +50,11 @@ export const Navbar = () => {
                   Reservaciones
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link " href="/Carrito">
+                  Carrito
+                </a>
+              </li>
             </ul>
             <div class="d-flex align-items-center">
               <a

@@ -16,7 +16,6 @@ export const Home = () => {
     minHeight: "100vh",
   };
   
-
   const carouselItemStyle = {
     textAlign: "center",
     maxHeight: "400px",
