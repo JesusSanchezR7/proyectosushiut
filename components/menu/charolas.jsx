@@ -49,12 +49,12 @@ export default function Charolas() {
                 }));
                 const response = await fetch(import.meta.env.VITE_API_KART, requestOptions);
                 if (response.ok) {
-                    console.log("Compra realizada con éxito!");
+                    console.log("  Se agrego a carrito ");
                 } else {
-                    console.error("Error al realizar la compra");
+                    console.error("Error al cargar");
                 }
             } catch (error) {
-                console.error("Error al realizar la compra:", error);
+                console.error("Error al agregar", error);
             }
         } else {
             console.error("Error: No se ha seleccionado un producto o no se ha obtenido el id del cliente");
@@ -123,6 +123,14 @@ export default function Charolas() {
         }
     }, [clientId]);
     
+     // Calcula el total cada vez que cambian los items en el carrito
+     useEffect(() => {
+        let total = 0;
+        cartItems.forEach((item) => {
+            total += parseFloat(item.Precio__c);
+        });
+        setTotalPrice(total);
+    }, [cartItems]);
 
 
     //MUESTRA LOS PRODUCTOS DE LA API 
