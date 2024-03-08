@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "098fccd3-5a03-46ad-97c1-5d9373020757"
+      }
+    },
+    "android": {
+      "package": "com.selle_tt.seorsushi"
+    }
+  }
+}
