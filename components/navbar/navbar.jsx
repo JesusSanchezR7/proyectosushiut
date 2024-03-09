@@ -19,7 +19,7 @@ export const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="container-fluid">
           <a className="navbar-brand-center" href="/Home">
-            <img src="./img/icon.png" alt="Logo" width="70" height="40" />
+            <img src="./img/icon.png" alt="Logo" width="68" height="40" />
           </a>
           <button
             className="navbar-toggler"
@@ -51,8 +51,8 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link " href="/Carrito">
-                  Carrito
+                <a className="nav-link " href="">
+                  
                 </a>
               </li>
             </ul>
