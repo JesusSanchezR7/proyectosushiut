@@ -53,8 +53,8 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link " href="/Carrito">
-                  Carrito
+                <a className="nav-link " href="">
+                  
                 </a>
               </li>
             </ul>

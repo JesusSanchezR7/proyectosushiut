@@ -65,7 +65,7 @@ export default function Charolas() {
      const addToCart = (productId) => {
         const selected = products.find(product => product.Id === productId);
         const existingCartItem = cartItems.find(item => item.Id === productId);
-        if (calculateTotalItems() < 10) {
+        if (calculateTotalItems() <= 10) {
             if (existingCartItem) {
                 const updatedCartItems = cartItems.map(item => {
                     if (item.Id === productId) {
