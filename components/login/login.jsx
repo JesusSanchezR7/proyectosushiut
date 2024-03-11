@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./login.css"; 
-import iconImage from "../../img/icon.png";
-import backgroundImg from "../../img/srsushisanluis.jpeg";
+import iconImage from "/icon.png";
+import backgroundImg from "/srsushisanluis.jpeg"; 
+
 import Cookies from 'universal-cookie';
 
 export const Login = () => {

@@ -1,48 +1,46 @@
 import React from "react";
 import { useState } from "react";
 import { Carousel, Button } from "react-bootstrap";
+import fondo1 from "/fondo1.jpg";
+import fondo2 from "/fondo2.jpg"; 
+import tienda1 from "/tienda1.jpg"; 
+import tienda2 from "/tienda2.jpg"; 
+import promocion from "/promocion.png"; 
+
 
 export const Home = () => {
   const [contactInfo, setContactInfo] = useState({
     phone: "653 517 0396",
     email: "facturasenorsushi@gmail.com",
     address: "C. 43 4300, Progreso, 83458 San Luis Río Colorado, Son.",
-    
   });
-
   const sectionStyle = {
     padding: "20px",
     background: "linear-gradient(to bottom, #FFFFFF)",
     minHeight: "100vh",
   };
-  
   const carouselItemStyle = {
     textAlign: "center",
     maxHeight: "400px",
     overflow: "hidden",
     position: "relative",
   };
-
   const carouselImgStyle = {
     maxHeight: "300px",
     width: "auto",
     margin: "0 auto",
     filter: "brightness(50%)",
   };
-
   const contactStyle = {
     color: "#333",
     paddingTop: "40px",
   };
-
   const buttonStyle = {
     backgroundColor: "red",
     border: "none",
     width: "150px",
   };
-
   const handleContactClick = () => {
-    // Función para manipular el contacto 
   };
 
   return (
@@ -50,11 +48,11 @@ export const Home = () => {
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="./img/fondo2.jpg" className="d-block w-100" alt="Slide 1" />
+          <img src={fondo2} className="d-block w-100" alt="Slide 1" />
           
         </div>
         <div className="carousel-item">
-          <img src="./img/fondo1.jpg" className="d-block w-100" alt="Slide 2" />
+          <img src={fondo1} className="d-block w-100" alt="Slide 2" />
         </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -78,7 +76,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="../img/tienda1.jpg"
+              src={tienda1}
               alt="Imagen 1"
               style={carouselImgStyle}
             />
@@ -102,7 +100,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="../img/tienda2.jpg"
+              src={tienda2}
               alt="Imagen 1"
               style={carouselImgStyle}
             />
@@ -126,7 +124,7 @@ export const Home = () => {
         </Carousel>
       </div><br></br>
       <div className="d-flex justify-content-center">
-      <img src="./img/promocion.png" alt="Descripción de la imagen" />
+      <img src={promocion} alt="Descripción de la imagen" />
     </div>
               {/* Footer mejorado */}
               <footer style={{ backgroundColor: "#333", color: "#fff", padding: "20px 0", textAlign: "center", marginTop: "40px" }}>
