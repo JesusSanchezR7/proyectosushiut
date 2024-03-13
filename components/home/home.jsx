@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { Carousel, Button } from "react-bootstrap";
+import fondo1 from "/fondo1.jpg";
+import fondo2 from "/fondo2.jpg"; 
+import tienda1 from "/tienda1.jpg"; 
+import tienda2 from "/tienda2.jpg"; 
+import promocion from "/promocion.png"; 
 
 export const Home = () => {
   const [contactInfo, setContactInfo] = useState({
@@ -50,12 +55,10 @@ export const Home = () => {
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="./img/fondo2.jpg" className="d-block w-100" alt="Slide 1" />
-          
+           <img src={fondo2} className="d-block w-100" alt="Slide 1" />          
         </div>
         <div className="carousel-item">
-          <img src="./img/fondo1.jpg" className="d-block w-100" alt="Slide 2" />
-        </div>
+           <img src={fondo1} className="d-block w-100" alt="Slide 2" />        </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -78,7 +81,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="../img/tienda1.jpg"
+                src={tienda1}
               alt="Imagen 1"
               style={carouselImgStyle}
             />
@@ -102,7 +105,7 @@ export const Home = () => {
           <Carousel.Item style={carouselItemStyle}>
             <img
               className="d-block w-100"
-              src="../img/tienda2.jpg"
+              src={tienda2}
               alt="Imagen 1"
               style={carouselImgStyle}
             />
@@ -126,7 +129,7 @@ export const Home = () => {
         </Carousel>
       </div><br></br>
       <div className="d-flex justify-content-center">
-      <img src="./img/promocion.png" alt="Descripción de la imagen" />
+      <img src={promocion} alt="Descripción de la imagen" />
     </div>
               {/* Footer mejorado */}
               <footer style={{ backgroundColor: "#333", color: "#fff", padding: "20px 0", textAlign: "center", marginTop: "40px" }}>
