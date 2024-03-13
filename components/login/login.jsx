@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css"; 
-import iconImage from "../../img/icon.png";
-import backgroundImg from "../../img/srsushisanluis.jpeg";
+import iconImage from "/icon.png";
+import backgroundImg from "/srsushisanluis.jpeg"; 
 import Cookies from 'universal-cookie';
 
 export const Login = () => {
@@ -31,9 +31,15 @@ export const Login = () => {
       
       if (response.ok) {
         const responseData = await response.json();
+        console.log('Datos de respuesta:', responseData); // Agregar un console.log para imprimir la respuesta completa
+        
         const idCliente = responseData.Id; // Suponiendo que el campo 'Id' contiene el ID del cliente
+        const rol = responseData.Rol__c; // Suponiendo que el campo 'Rol__c' contiene el rol del usuario
         console.log('ID del cliente:', idCliente); // Agregar un console.log para imprimir el ID del cliente
+        console.log('Rol del usuario:', rol); // Agregar un console.log para imprimir el rol del usuario
+        
         cookies.set('idCliente', idCliente, { path: '/' }); // Establecer la cookie con el ID del cliente
+        cookies.set('rol', rol, { path: '/' }); // Establecer la cookie con el rol del usuario
         window.location.href = "/Home"; 
       } else {
         const errorMessage = await response.text();
