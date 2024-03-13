@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import iconImage from "/icon.png";
 
 export const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,8 +20,7 @@ export const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="container-fluid">
           <a className="navbar-brand-center" href="/Home">
-            <img src="./img/icon.png" alt="Logo" width="68" height="40" />
-          </a>
+          <img src={iconImage} alt="Logo" width="70" height="40" />          </a>
           <button
             className="navbar-toggler"
             type="button"
