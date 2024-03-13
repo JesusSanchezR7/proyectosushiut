@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import "./registro.css";
+import iconImage from "/icon.png";
+import backgroundImg from "/srsushisanluis.jpeg"; 
 
 export const Registro = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +55,7 @@ export const Registro = () => {
   return (
     <div className="registro-container">
       <div className="image2-2">
-        <img src="../../img/srsushisanluis2.jpeg" alt="" />
+      <img src={backgroundImg} alt="" />
       </div>
       <div className="Registro">
         <div className="row justify-content-center">
@@ -61,7 +63,7 @@ export const Registro = () => {
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <div className="image">
-                  <img src="./img/icon.png" alt="Logo" />
+                <img src={iconImage} alt="Logo" />
                 </div>
                 <legend>Crear Una Cuenta</legend>
                 <div className="row">
