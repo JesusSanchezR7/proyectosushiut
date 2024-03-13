@@ -4,6 +4,9 @@ import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./reservar.css";
+import local1 from "/local1.jpeg"; 
+import local2 from "/local2.jpeg"; 
+import local3 from "/local3.jpeg"; 
 
 export const Reservar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -71,7 +74,7 @@ export const Reservar = () => {
       <h4 className="tect-title"> ELIGE TU LOCAL Y RESERVA TU MESA CON NOSTROS </h4>
         <div className="reservar-container">
             <div className="sucursales1" style={{ width: "400px" }}>
-              <img className="sucursales" src="../../img/fondos/local1.jpeg" alt="Card image" />
+              <img className="sucursales" src={local1} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi</h4>
                   <p className="card-text-sucursales">Calz Monterrey, La Grullita, 83470 San Luis Río Colorado, Son. </p>
@@ -80,7 +83,7 @@ export const Reservar = () => {
           </div>
 
           <div className="sucursales1" style={{ width: "400px" }}>
-              <img className="sucursales" src="../../img/fondos/local2.jpeg" alt="Card image" />
+              <img className="sucursales" src={local2} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi 43</h4>
                   <p className="card-text-sucursales">Av Libertad & C.43 10 de Abril, 83458 San Luis Río Colorado, Son. </p>
@@ -89,7 +92,7 @@ export const Reservar = () => {
           </div>
 
           <div className="sucursales1" style={{ width: "400px" }}>
-              <img className="sucursales" src="../../img/fondos/local3.jpeg" alt="Card image" />
+              <img className="sucursales" src={local3} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi KM 43</h4>
                   <p className="card-text-sucursales">Av Insurgentes y calle 2da, 21720 Cdad. Guadalupe Victoria, B.C.</p>
@@ -107,7 +110,7 @@ export const Reservar = () => {
                     
                     <div className="flex-shrink-0">
                       <img
-                        src="../../img/fondos/local1.jpeg"
+                        src={local1}
                         alt="Generic placeholder image"
                         className="img-fluid"
                         style={{ width: "150px", borderRadius: "10px" }}
@@ -131,7 +134,7 @@ export const Reservar = () => {
                   <div className="d-flex text-black">
                     <div className="flex-shrink-0">
                       <img
-                        src="../../img/fondos/local2.jpeg"
+                        src={local2}
                         alt="Generic placeholder image"
                         className="img-fluid"
                         style={{ width: "150px", borderRadius: "10px" }}
@@ -153,7 +156,7 @@ export const Reservar = () => {
                   <div className="d-flex text-black">
                     <div className="flex-shrink-0">
                       <img
-                        src="../../img/fondos/local3.jpeg"
+                        src={local3}
                         alt="Generic placeholder image"
                         className="img-fluid"
                         style={{ width: "150px", borderRadius: "10px" }}
