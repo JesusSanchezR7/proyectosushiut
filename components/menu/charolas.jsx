@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Toast} from "react-bootstrap";
+import iconCarrito from "/carrito.ico";
 
 export default function Charolas() {
     const [products, setProducts] = useState([]);
@@ -65,7 +66,7 @@ export default function Charolas() {
      const addToCart = (productId) => {
         const selected = products.find(product => product.Id === productId);
         const existingCartItem = cartItems.find(item => item.Id === productId);
-        if (calculateTotalItems() <= 10) {
+        if (calculateTotalItems() <= 9) {
             if (existingCartItem) {
                 const updatedCartItems = cartItems.map(item => {
                     if (item.Id === productId) {
@@ -217,7 +218,7 @@ export default function Charolas() {
     <div className="container">
       <div className="row">
       <button className="btn btn-danger" style={{ backgroundColor: "#cd1818", width: "100px", float: "left", position: "relative" }} onClick={handleShowCartModal}>
-            <img src="./img/carrito.ico" alt="Logo" width="20" height="20" />
+            <img src={iconCarrito} alt="Logo" width="20" height="20" />
             {cartItems.length > 0 && (
                 <span style={{ position: "absolute", top: "-10px", right: "-10px", fontSize: "19px", backgroundColor: "#cd1818", color: "#fff", borderRadius: "50%", padding: "5px", width: "40px", height: "40px", textAlign: "center" }}>
                     {cartItems.length}
