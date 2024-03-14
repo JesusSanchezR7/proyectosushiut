@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../img/fondos/login2.png'); 
+    background-image: url('/login2.png'); 
     background-size: cover;
     background-position: center;
     font-family: Arial, sans-serif; 

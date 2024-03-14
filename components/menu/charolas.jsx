@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Toast} from "react-bootstrap";
 import iconCarrito from "/carrito.ico";
 
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
+
 export default function Charolas() {
+    initMercadoPago('TEST-4d2a0bbf-6f2a-4e7c-8b35-c812c8cc3783');
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]); 
     const [showToast, setShowToast] = useState(false);
@@ -10,6 +14,9 @@ export default function Charolas() {
     const [showWarningToast, setShowWarningToast] = useState(false);
     const [clientId, setClientId] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const [showWallet, setShowWallet] = useState(false);
+    const [preferenceId, setPreferenceId] = useState(null);
 
 
     // Función para obtener el valor de una cookie por su nombre
@@ -202,8 +209,53 @@ export default function Charolas() {
             setCartItems(JSON.parse(storedCartItems));
         }
     }, []);
-   
- 
+
+    // Función para manejar el clic en el botón "REALIZAR COMPRA"
+    const handleRealizarCompra = () => {
+        setShowWallet(true); // Mostrar el componente Wallet
+        
+
+    };
+
+    // Función para manejar el cambio en el total del precio (si es necesario)
+    // Puedes usar esta función para actualizar el precio total antes de mostrar el componente Wallet
+    const handleTotalPriceChange = (newPrice) => {
+        setTotalPrice(newPrice);
+    };
+
+    useEffect(() => {
+        const generatePreference = async () => {
+            try {
+                const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'TEST-2877916831208277-031302-8c8e3e6ab8f6adbf6e4e17225e93bd4b-1726171220',
+                    },
+                    body: JSON.stringify({
+                        items: [
+                            {
+                                title: 'Producto',
+                                quantity: 1,
+                                currency_id: 'ARS',
+                                unit_price: totalPrice,
+                            }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                setPreferenceId(data.id);
+            } catch (error) {
+                console.error('Error al generar la preferencia:', error);
+            }
+        };
+
+        if (totalPrice > 0) {
+            generatePreference();
+        }
+    }, [totalPrice]);
+    
         
     // Modal
     const handleShowCartModal = () => {
@@ -776,10 +828,21 @@ export default function Charolas() {
             </div>
             ))}
             </Modal.Body>
-            <Modal.Footer className="d-flex justify-content-between">
-                    <h6 className="total-price">Total: {totalPrice}$</h6>
-                <Button variant="primary" >REALIZAR COMPRA</Button>
-            </Modal.Footer>
+                <Modal.Footer className="d-flex justify-content-between">
+                <h6 className="total-price">Total: {totalPrice}$</h6>
+                {!showWallet && (
+                    <Button variant="primary" onClick={handleRealizarCompra}>
+                    REALIZAR COMPRA
+                    </Button>
+                )}
+                {showWallet && (
+                    <Wallet 
+                    initialization={{ preferenceId: "<>"}}
+                    totalPrice={totalPrice}
+                    onTotalPriceChange={handleTotalPriceChange}
+                />            
+                )}
+                </Modal.Footer>
         </Modal>
     </div>
   );
