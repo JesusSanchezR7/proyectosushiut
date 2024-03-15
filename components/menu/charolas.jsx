@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Toast} from "react-bootstrap";
 import iconCarrito from "/carrito.ico";
+import axios from "axios";
 
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 
 export default function Charolas() {
-    initMercadoPago('TEST-4d2a0bbf-6f2a-4e7c-8b35-c812c8cc3783');
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]); 
     const [showToast, setShowToast] = useState(false);
@@ -16,7 +16,9 @@ export default function Charolas() {
     const [totalPrice, setTotalPrice] = useState(0);
 
     const [showWallet, setShowWallet] = useState(false);
+    //ESTADO PARA GUARDAR EL PREFERENCE id
     const [preferenceId, setPreferenceId] = useState(null);
+    initMercadoPago('APP_USR-554f4183-17c5-43a2-9213-7b3bf8a5329e');
 
 
     // Función para obtener el valor de una cookie por su nombre
@@ -69,37 +71,36 @@ export default function Charolas() {
         }
     };
 
-     //Agregar a carrito
-     const addToCart = (productId) => {
+     // Agregar a carrito
+    const addToCart = (productId) => {
         const selected = products.find(product => product.Id === productId);
         const existingCartItem = cartItems.find(item => item.Id === productId);
-        if (calculateTotalItems() <= 9) {
-            if (existingCartItem) {
-                const updatedCartItems = cartItems.map(item => {
-                    if (item.Id === productId) {
-                        return {
-                            ...item,
-                            quantity: item.quantity + 1,
-                        };
-                    }
-                    return item;
-                });
-                setCartItems(updatedCartItems);
-            } else {
-                const newCartItem = {
-                    ...selected,
-                    quantity: 1,
-                };
-                setCartItems([...cartItems, newCartItem]);
-            }
-            // Mostrar notificación de producto agregado
-            setShowToast(true);
-            
-            // Ejecutar la función para realizar la compra pasando el ID del producto
-            makePurchase(productId);
+        
+        if (existingCartItem) {
+            const updatedCartItems = cartItems.map(item => {
+                if (item.Id === productId) {
+                    return {
+                        ...item,
+                        quantity: item.quantity + 1,
+                    };
+                }
+                return item;
+            });
+            setCartItems(updatedCartItems);
         } else {
-            setShowWarningToast(true);
+            const newCartItem = {
+                ...selected,
+                quantity: 1,
+            };
+            setCartItems([...cartItems, newCartItem]);
+            // Refrescar la página después de agregar el producto al carrito
         }
+        // Mostrar notificación de producto agregado
+        setShowToast(true);
+        
+        // Ejecutar la función para realizar la compra pasando el ID del producto
+        makePurchase(productId);
+        
     };
 
     // Función para obtener los productos del carrito del cliente desde la API
@@ -180,6 +181,8 @@ export default function Charolas() {
                 // Eliminar el producto del carrito en el frontend
                 const updatedCartItems = cartItems.filter(item => item.Id !== productId);
                 setCartItems(updatedCartItems);
+                // Refrescar la página después de eliminar el producto
+                window.location.reload();
             } else {
                 console.error("Error al eliminar el producto del carrito:", response.statusText);
             }
@@ -187,6 +190,7 @@ export default function Charolas() {
             console.error("Error al eliminar el producto del carrito:", error);
         }
     };
+
     
     
     // Calcula la cantidad total de productos en el carrito icono carrito
@@ -213,48 +217,37 @@ export default function Charolas() {
     // Función para manejar el clic en el botón "REALIZAR COMPRA"
     const handleRealizarCompra = () => {
         setShowWallet(true); // Mostrar el componente Wallet
-        
-
+    
     };
 
-    // Función para manejar el cambio en el total del precio (si es necesario)
-    // Puedes usar esta función para actualizar el precio total antes de mostrar el componente Wallet
+    // Función para manejar creear preference
     const handleTotalPriceChange = (newPrice) => {
-        setTotalPrice(newPrice);
+        createPreference(newPrice);
     };
 
-    useEffect(() => {
-        const generatePreference = async () => {
-            try {
-                const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'TEST-2877916831208277-031302-8c8e3e6ab8f6adbf6e4e17225e93bd4b-1726171220',
-                    },
-                    body: JSON.stringify({
-                        items: [
-                            {
-                                title: 'Producto',
-                                quantity: 1,
-                                currency_id: 'ARS',
-                                unit_price: totalPrice,
-                            }
-                        ]
-                    })
-                });
+    //Mercado pago
+    const createPreference = async () => {
+     try {
+        const response = await axios.post("http://localhost:3000/create_prefernece", {
+            title: "TOTAL:",
+            quantity: 1,
+            price: totalPrice,
+        });
 
-                const data = await response.json();
-                setPreferenceId(data.id);
-            } catch (error) {
-                console.error('Error al generar la preferencia:', error);
-            }
-        };
+        const { id } = response.data;
+        return id;
+      } catch (error) {
+        console.log(error);
+      }
+    };    
 
-        if (totalPrice > 0) {
-            generatePreference();
+    const handleBuy = async () => {
+        const id = await createPreference();
+        if (id) {
+            setPreferenceId(id);
         }
-    }, [totalPrice]);
+    };
+    
     
         
     // Modal
@@ -315,11 +308,8 @@ export default function Charolas() {
                                 <h2 className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>{product.Precio__c} </h2>
                                 <h6 className="mb-1"  style={{ visibility: "hidden", display: 'none' }}>{product.Id}</h6>
                                 <div className="d-flex pt-1">
-                                        <button className="btn btn-danger w-50 mr-2" onClick={() => addToCart(product.Id)}>Añadir</button>
-                                        <p style={{ color: "#ffffff" }}>-</p>
-                                        {product.Tiempo_de_preparacion__c && (
-                                            <a href={product.Tiempo_de_preparacion__c} rel="noopener noreferrer" className="btn btn-primary w-50 ml-2">Comprar</a>
-                                        )}
+                                <button  className="btn btn-danger w-100" onClick={() => addToCart(product.Id)}>Añadir</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -830,18 +820,8 @@ export default function Charolas() {
             </Modal.Body>
                 <Modal.Footer className="d-flex justify-content-between">
                 <h6 className="total-price">Total: {totalPrice}$</h6>
-                {!showWallet && (
-                    <Button variant="primary" onClick={handleRealizarCompra}>
-                    REALIZAR COMPRA
-                    </Button>
-                )}
-                {showWallet && (
-                    <Wallet 
-                    initialization={{ preferenceId: "<>"}}
-                    totalPrice={totalPrice}
-                    onTotalPriceChange={handleTotalPriceChange}
-                />            
-                )}
+                    <Button variant="primary" onClick={handleBuy}>REALIZAR COMPRA</Button>
+                    { preferenceId && <Wallet initialization={{preferenceId: preferenceId}} /> }
                 </Modal.Footer>
         </Modal>
     </div>
