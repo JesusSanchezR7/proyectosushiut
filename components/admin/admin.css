@@ -16,12 +16,12 @@
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
-  overflow-x: auto; 
+  overflow-x: auto; /* Agregado para que la tabla sea scrollable en pantallas pequeñas */
 }
 
 .table th,
 .table td {
-  padding: 0.5rem; 
+  padding: 0.5rem; /* Reducido el padding para ocupar menos espacio */
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
@@ -119,7 +119,6 @@
   .table td {
     padding: 0.15rem; /* Reducido aún más el padding para ocupar menos espacio */
     white-space: nowrap; /* Evita que el texto se rompa y se mantenga en una línea */
-
   }
 
   /* Mostrar solo la foto, nombre y botones de editar/eliminar */
@@ -162,46 +161,3 @@
     text-overflow: ellipsis; /* Agrega puntos suspensivos para indicar texto oculto */
   }
 }
-
-
-/* Mostrar solo la foto, nombre y botones de editar/eliminar */
-.table th:not(:first-child),
-.table td:not(:first-child):not(:nth-child(3)):not(:nth-child(7)):not(:nth-child(8)) {
-  display: none;
-}
-
-.table td:nth-child(3),
-.table td:nth-child(7), 
-.table td:nth-child(8) {
-  text-align: center; /* Centrar los botones de editar/eliminar */
-}
-
-.table td:nth-child(3) img {
-  max-width: 30px; /* Limitar el ancho de la imagen */
-  height: auto; /* Mantener la proporción */
-  display: block; /* Alinear la imagen al centro */
-}
-
-
-/* Mostrar encabezados en pantallas pequeñas */
-.table thead {
-  display: table-header-group;
-}
-
-/* Mostrar solo encabezados de imagen, nombre y botones en pantallas pequeñas */
-.table th:nth-child(1),
-.table th:nth-child(3),
-.table th:nth-child(7),
-.table th:nth-child(8) {
-  display: table-cell;
-}
-
-/* Comprimir el texto del nombre */
-.table td:nth-child(3) {
-  max-width: 200px; /* Ajusta el ancho máximo según sea necesario */
-  white-space: nowrap; /* Evita el salto de línea */
-  overflow: hidden; /* Oculta el texto que excede el ancho máximo */
-  text-overflow: ellipsis; /* Agrega puntos suspensivos para indicar texto oculto */
-}
-
-
