@@ -8,17 +8,17 @@ import Cookies from 'universal-cookie';
 export const Login = () => {
   const [Correo, setCorreo] = useState("");
   const [Contrasena, setContrasena] = useState("");
-  const [loading, setLoading] = useState(false); // Estado de carga para el loader
+  const [loading, setLoading] = useState(false); 
   const [loginError, setLoginError] = useState(false);
-  const [color, setColor] = useState("#ffffff"); // Color del loader
-  const cookies = new Cookies(); // Crear una instancia de Cookies
+  const [color, setColor] = useState("#ffffff"); 
+  const cookies = new Cookies(); 
 
   const adminemail = "admin@gmail.com";
   const adminpassword = "rollito123";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Activar el loader al iniciar sesión
+    setLoading(true); 
 
     if (Correo === adminemail && Contrasena === adminpassword) {
       // Si el correo y la contraseña son correctos
