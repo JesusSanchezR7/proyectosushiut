@@ -4,6 +4,8 @@ import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import "./registro.css";
 import iconImage from "/icon.png";
 import backgroundImg from "/srsushisanluis.jpeg"; 
+import { HashLoader } from "react-spinners"; // Importar el componente ClockLoader
+
 
 export const Registro = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +18,8 @@ export const Registro = () => {
   });
 
   const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(false); // Estado de carga para el loader
+
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -27,6 +31,8 @@ export const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Activar el loader al enviar el formulario
+
 
     try {
       const response = await fetch(import.meta.env.VITE_API_USERS, {
@@ -49,6 +55,8 @@ export const Registro = () => {
     } catch (error) {
       console.error("Error en registro:", error.message);
       setError("Hubo un error en el registro.");
+    } finally {
+      setLoading(false); // Desactivar el loader después de manejar la solicitud
     }
   };
 
@@ -154,18 +162,29 @@ export const Registro = () => {
                   {error && <p style={{ color: 'red' }}>{error}</p>} 
                 </div>               
                  <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-danger">
+                  <button type="submit" className="btn-registrar">
                     Registrarse
                   </button>
                 </div>
               </fieldset>
             </form>
-            <small id="passwordHelp" className="form-text text-muted">
-              ¿Ya tienes cuenta? <a href="/" className="card-link">Iniciar sesión</a>
+            <small id="passwordHelp" className="form-text">
+            ¿Ya tienes cuenta?  
+            <a style={{opacity: 0}}>-</a>
+            <a href="/" className="card-link" style={{ color: '#cd1818' }}>Iniciar sesión</a>
             </small>
           </div>
         </div>
       </div>
+       {/* Loader centrado */}
+       {loading && (
+        <div className="loader-container">
+          <HashLoader  
+            color="#cd1818" 
+            size={160}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,102 @@
+
+
+.btn-danger {
+    background-color: #cd1818;
+    width: 100px;
+    float: left;
+    position: relative;
+}
+
+.btn-danger img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-danger span {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 19px;
+    background-color: #cd1818;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.mb-1-id-invisibility {
+    visibility: hidden;
+    display: none;
+}
+
+/**/
+.charolas-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.img-fluid {
+    width: 150px;
+    height: 122px;
+    border-radius: 10px;
+}
+
+.card-prod {
+    border-radius: 15px;
+}
+
+
+/**/
+.card-header {
+    background-color: black;
+    color: white;
+}
+
+.card-header a {
+    color: white;
+    text-decoration: none;
+}
+
+.card-body {
+    border-radius: 15px;
+}
+
+.card-body img {
+    width: 150px;
+    height: 122px;
+    border-radius: 10px;
+}
+
+.card-body h6 {
+    margin-bottom: 0.5rem;
+}
+
+.card-body h2 {
+    margin-bottom: 1rem;
+    color: #2b2a2a;
+}
+
+.card-body .btn-danger {
+    width: 100%;
+}
+
+@media (max-width: 990px) {
+    .card-prod .d-flex {
+      flex-direction: column; /* Cambiar la dirección de los elementos flexibles a columna */
+      align-items: center; /* Centrar los elementos horizontalmente */
+    }
+  
+    .card-prod .flex-shrink-0 {
+      margin-bottom: 10px; /* Espacio entre la imagen y el contenido debajo */
+    }
+  
+    .card-prod .flex-grow-1 {
+      width: 100%; /* Ajustar el ancho del contenido debajo de la imagen */
+      text-align: center; /* Centrar el texto */
+    }
+  }
+  

@@ -14,6 +14,28 @@
     font-family: Arial, sans-serif; 
 }
 
+/*Boton de Registro*/
+.btn-registrar {
+    background-color: #cd1818;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+.btn-registrar:hover {
+    background-color: #a31212; 
+}
+
+.form-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
 /* Estilos para el formulario */
 .Registro {
     background-color: #ffffffc3;
@@ -84,6 +106,14 @@
     border-top-left-radius: 10px; 
     border-bottom-left-radius: 10px; 
 }
+
+/*  Tiempo de espera */
+.loader-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
 
 /* Media query para dispositivos más pequeños */

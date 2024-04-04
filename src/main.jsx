@@ -9,6 +9,9 @@ import { Reservar } from "../components/reservar/reservar";
 import { Carrito } from "../components/carrito/carrito";
 
 import { Admin } from "../components/admin/admin";
+import { Admin_reservacion } from "../components/admin-reservacion/admin_reservacion";
+import { Admin_cocina } from "../components/admin-cocina/admin_cocina";
+
 
 import  Menu  from "../components/menu/charolas";
 
@@ -47,10 +50,29 @@ const App = () => {
                 <Admin></ Admin>
                 </div>
             }
-          />  
-          
-          
+          /> 
 
+          <Route
+            path="/AdminReservaciones"
+            element={
+              <div>
+                <Navbar onSearch={handleSearch} /> <br></br>
+                <Admin_reservacion></ Admin_reservacion>
+                </div>
+            }
+          />  
+
+          <Route
+            path="/AdminCocina"
+            element={
+              <div>
+                <Navbar onSearch={handleSearch} /> <br></br>
+                <Admin_cocina></Admin_cocina>
+                </div>
+            }
+          /> 
+          
+        
           <Route
             path="/Registro"
             element={

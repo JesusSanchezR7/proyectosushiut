@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import "./login.css"; 
 import iconImage from "/icon.png";
 import backgroundImg from "/srsushisanluis.jpeg"; 
+import { HashLoader  } from "react-spinners";
 import Cookies from 'universal-cookie';
 
 export const Login = () => {
   const [Correo, setCorreo] = useState("");
   const [Contrasena, setContrasena] = useState("");
+  const [loading, setLoading] = useState(false); // Estado de carga para el loader
   const [loginError, setLoginError] = useState(false);
+  const [color, setColor] = useState("#ffffff"); // Color del loader
   const cookies = new Cookies(); // Crear una instancia de Cookies
+
+  const adminemail = "admin@gmail.com";
+  const adminpassword = "rollito123";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Activar el loader al iniciar sesión
+
+    if (Correo === adminemail && Contrasena === adminpassword) {
+      // Si el correo y la contraseña son correctos
+      window.location.href = "/admin";
+    } else {
+    }
 
     const requestOptions = {
       method: "POST",
@@ -31,7 +44,7 @@ export const Login = () => {
       
       if (response.ok) {
         const responseData = await response.json();
-        console.log('Datos de respuesta:', responseData); // Agregar un console.log para imprimir la respuesta completa
+        console.log('Datos de respuesta:', responseData); 
         
         const idCliente = responseData.Id; // Suponiendo que el campo 'Id' contiene el ID del cliente
         const rol = responseData.Rol__c; // Suponiendo que el campo 'Rol__c' contiene el rol del usuario
@@ -49,6 +62,8 @@ export const Login = () => {
     } catch (error) {
       console.error("error si hay problemas con la solicitud", error);
       setLoginError(true); 
+    } finally {
+      setLoading(false); // Desactivar el loader después de manejar la solicitud
     }
   };
 
@@ -97,7 +112,7 @@ export const Login = () => {
                 <br></br>
                 {loginError && (<p style={{ color: "red" }}>Correo o Contraseña Incorrectos.</p> )}
                 <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-danger">
+                  <button type="submit" className="btn-iniciar-session">
                     Iniciar sesión
                   </button>
                 </div>
@@ -105,18 +120,24 @@ export const Login = () => {
             </form>
             <br />
             <small id="passwordHelp" className="form-text">
-              ¿No tienes cuenta aún?
+            ¿No tienes cuenta aún? <a style={{opacity: 0}}>-</a> <a href="/Registro" style={{ color: '#cd1818' }} className="card-link">Registrarse</a>
             </small>
-            <a href="/Registro" className="card-link">
-              {" "}
-             Registrarse
-            </a>
           </div>
         </div>
       </div>
       <div className="image2">
         <img src={backgroundImg} alt="" />
       </div>
+
+      {/* Loader centrado */}
+      {loading && (
+        <div className="loader-container">
+          <HashLoader  
+            color="#cd1818" 
+            size={160}
+          />
+        </div>
+      )}
     </div>
   );
 };
