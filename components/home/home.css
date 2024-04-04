@@ -1,0 +1,119 @@
+/* Home.css */
+/* Estilos para el contenedor principal que cubre toda la pantalla */
+.home-container {
+    position: fixed;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/fondohome.jpg'); 
+    background-size: cover;
+    background-position: center top; /* Ajusta la posición de la imagen de fondo */
+    padding: 0; /* Elimina el padding */
+    margin-top: -20px; /* Agrega un margin negativo si es necesario */
+    z-index: -1;
+    overflow-x: hidden; /* Para ocultar la barra de desplazamiento horizontal */
+
+}
+
+
+  /* SECCION 1 --------------------------------------------------------- */
+.container-etapa1 {
+    display: flex;
+}
+  
+.text-section {
+    flex: 1;
+    padding: 20px;
+    text-align: center; /* Centra el contenido horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+  }
+  
+  .hometitulo1 {
+    font-size: 3em; /* Cambia el tamaño del título */
+    margin-bottom: 20px; /* Agrega espacio inferior */
+
+  }
+  
+  .homesuptitulo1 {
+    font-family: Arial, sans-serif; /* Cambia la fuente del subtítulo */
+    text-align: justify;
+    font-size: 1.2em; /* Ajusta el tamaño del texto */
+    margin-bottom: 20px; /* Agrega espacio inferior */
+  }
+  
+  .homebtn1 {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .homebtn1:hover {
+    background-color: #cd1818;
+  }
+  
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen1 {
+    max-width: 100%;
+    max-height: 100%;
+    transform: rotate(-40deg);
+    position: absolute; /* Asegura que el posicionamiento sea relativo al contenedor padre */
+    left: -2cm; /* Mueve la imagen 2cm hacia la izquierda */
+    top: 2cm;
+    z-index: -1;
+}
+
+
+  
+
+
+/* SECCION 2 --------------------------------------------------------- */
+
+
+
+.sectionStyle {
+    padding: 20px;
+    background: linear-gradient(to bottom, #FFFFFF);
+    min-height: 100vh;
+  }
+  
+  .carouselItemStyle {
+    text-align: center;
+    max-height: 400px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .carouselImgStyle {
+    max-height: 300px;
+    width: auto;
+    margin: 0 auto;
+    filter: brightness(50%);
+  }
+  
+  .contactStyle {
+    color: #333;
+    padding-top: 40px;
+  }
+  
+  .buttonStyle {
+    background-color: red;
+    border: none;
+    width: 150px;
+  }
+
+  

@@ -8,43 +8,57 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../../img/fondos/fondo.jpg'); 
+  background-image: url('/fondo.jpg'); 
   background-size: cover;
   background-position: center;
   font-family: Arial, sans-serif;
   padding: 0px; 
   z-index: -1;
+
 }
 
 .tect-title {
   font-family: Arial, sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: #333; /* Color del texto */
+  color: #000000; /* Color del texto */
   text-align: center; /* Alineación del texto */
   margin-bottom: 20px; /* Espacio inferior */
 }
 
 .Reservar {
   position: fixed;
-  top: 11cm;
+  top: 50%;
   left: 50%;
-  width: 45cm;
-  height: 631px;
+  width: 80%;
+  height: 55%;
   transform: translate(-50%, -50%);
-  background-color: rgb(255, 255, 255); /* Fondo semi-transparente */
+  background-color: rgb(226, 220, 220); 
   padding: 20px;
   border-radius: 10px;
   max-width: 80%;
+  display: none;
+  z-index: 1;
+  overflow: auto;
+  line-height: 0.2; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
 }
-
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 575px) {
+  .Reservar {
+    height: 90%; 
+  }
+}
   
 .sucursales1 {
   width: 400px;
   border: 0px;
   border-radius: 5px;
   margin: 20px;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
 }
   
 .sucursales {
@@ -87,7 +101,7 @@ legend button {
 }
 
 .cards-container {
-  margin-top: 2px;
+  margin-top: 0px;
 }
 
 /* Estilos para la imagen pequena */
@@ -115,7 +129,7 @@ legend button {
 }
 
 /* Media Query para pantallas más pequeñas */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   /* Ocultar la imagen sucursales en pantallas pequeñas */
   .sucursales1 {
     display: none;
@@ -125,6 +139,7 @@ legend button {
     display: none;
   }
 }
+
   
 /* Estilo para pantallas más pequeñas (max-width: 768px) */
 @media (max-width: 768px) {
@@ -166,5 +181,60 @@ legend button {
   } 
 }
 
-  
-  
+
+@media (max-width: 1200px) {
+  .sucursales {
+    width: 100%; /* Ajustar el ancho máximo del contenedor */
+    max-width: 200px; /* Establecer el ancho máximo deseado para la imagen */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
+  }
+
+  .card-sucursales {
+    text-align: center; /* Centrar el texto */
+  }
+
+  .card-title-sucursales {
+    font-size: 1rem; /* Tamaño de fuente más pequeño */
+    margin-bottom: 0.5rem; /* Espacio inferior más pequeño */
+  }
+
+  .card-text-sucursales {
+    font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+    margin-bottom: 0.5rem; /* Espacio inferior más pequeño */
+  }
+
+  .btn-sucursales {
+    font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+    padding: 0.375rem 0.75rem; /* Espaciado del botón más pequeño */
+  }
+}
+
+/* Estilo para el botón grande */
+.btn-reservar {
+  border: none;
+  font-size: 1.5em; /* Tamaño de fuente grande */
+  padding: 20px 20px; /* Padding del botón */
+  border-radius: 5px; /* Borde redondeado */
+  background-color: #cd1818; /* Color de fondo */
+  color: #fff; /* Color de texto */
+  cursor: pointer;
+}
+
+/* Estilo para el botón grande al pasar el cursor sobre él */
+.btn-reservar:hover {
+  background-color: #000000; /* Cambiar color de fondo al pasar el cursor */
+}
+
+/* Estilos para el título de la reservación */
+.reservar-titulo {
+  font-size: 1.5em; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  color: #000000; /* Color del texto */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+/* Estilos para el botón dentro del título de la reservación */
+.reservar-titulo button {
+  margin-left: 20px; /* Espacio a la izquierda del botón */
+}
+

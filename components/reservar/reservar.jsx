@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import DatePicker from "react-datepicker";
@@ -12,11 +12,39 @@ export const Reservar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedPlace, setSelectedPlace] = useState("");
-  const [peopleCount, setPeopleCount] = useState(1);
+  const [peopleCount, setPeopleCount] = useState(0);
   const [paymentType, setPaymentType] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [anotaciones, setAnotaciones] = useState(""); 
+  const [anotaciones, setAnotaciones] = useState(selectedPlace);
+  const [IdUsuario, setIdUsuario] = useState("");
+  const [showNotification, setShowNotification] = useState(false); // Estado para mostrar la notificación
+  const [showIncompleteFieldsNotification, setShowIncompleteFieldsNotification] = useState(false); // Estado para mostrar la notificación de campos incompletos
 
+
+    // Función para obtener el valor de la cookie "idCliente"
+  const getCookieValue = (cookieName) => {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(";");
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      let cookie = cookieArray[i];
+      while (cookie.charAt(0) === " ") {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length)
+          .replace(/\[|\]|"/g, ''); 
+      }
+    }
+    return "";
+  };
+
+  useEffect(() => {
+    const idCliente = getCookieValue("idCliente");
+    setIdUsuario(idCliente);
+  }, []); 
+  
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -27,9 +55,11 @@ export const Reservar = () => {
 
   const handleReservarClick = (place) => {
     setSelectedPlace(place);
+    setAnotaciones(place); 
     const modal = document.querySelector(".Reservar");
     modal.style.display = "block";
   };
+  
 
   const handleCloseModal = () => {
     const modal = document.querySelector(".Reservar");
@@ -38,16 +68,37 @@ export const Reservar = () => {
 
   const handleSubmit = async () => {
     try {
+      if (
+        selectedPlace === "" ||
+        peopleCount === 0 ||
+        paymentType === "" ||
+        phoneNumber === "" ||
+        selectedDate === null ||
+        selectedTime === ""
+      ) {
+        // Mostrar un mensaje de error si algún campo está vacío
+        setShowIncompleteFieldsNotification(true); // Mostrar notificación de campos incompletos
+        setTimeout(() => {
+          setShowIncompleteFieldsNotification(false); // Ocultar notificación después de 3 segundos
+        }, 4000); // 4 segundos
+        return; // Detener el envío del formulario
+      }
+  
+      // Resto del código para enviar la reserva si todos los campos están completos
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+  
       const requestBody = {
-        Fecha: selectedDate,
+        Fecha: formattedDate,
         Hora: selectedTime,
-        Lugar: selectedPlace,
         Personas: peopleCount,
         Tipo_pago: paymentType,
         Celular: phoneNumber,
-        Anotaciones: anotaciones
+        Anotaciones: anotaciones,
+        IdUsuario: IdUsuario,
       };
-
+  
+      console.log('Datos del formulario:', requestBody);
+  
       const response = await fetch(import.meta.env.VITE_API_RESERVACION, {
         method: 'POST',
         headers: {
@@ -58,9 +109,14 @@ export const Reservar = () => {
         },
         body: JSON.stringify(requestBody)
       });
-
+  
       if (response.ok) {
         console.log("Reserva enviada correctamente");
+        setShowNotification(true); // Mostrar notificación
+        setTimeout(() => {
+          setShowNotification(false); // Ocultar notificación después de un tiempo
+          handleCloseModal(); // Cerrar modal
+        }, 4000); // 4 segundos
       } else {
         console.error("Error al enviar la reserva:", response.status, response.statusText);
       }
@@ -69,11 +125,14 @@ export const Reservar = () => {
     }
   };
 
+  
+
   return (
     <div className="container">
       <h4 className="tect-title"> ELIGE TU LOCAL Y RESERVA TU MESA CON NOSTROS </h4>
+
         <div className="reservar-container">
-            <div className="sucursales1" style={{ width: "400px" }}>
+            <div className="sucursales1" >
               <img className="sucursales" src={local1} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi</h4>
@@ -82,7 +141,7 @@ export const Reservar = () => {
                 </div>
           </div>
 
-          <div className="sucursales1" style={{ width: "400px" }}>
+          <div className="sucursales1" >
               <img className="sucursales" src={local2} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi 43</h4>
@@ -91,7 +150,7 @@ export const Reservar = () => {
                 </div>
           </div>
 
-          <div className="sucursales1" style={{ width: "400px" }}>
+          <div className="sucursales1" >
               <img className="sucursales" src={local3} alt="Card image" />
                 <div className="card-sucursales">
                   <h4 className="card-title-sucursales">Señor Sushi KM 43</h4>
@@ -102,9 +161,10 @@ export const Reservar = () => {
       </div>
 
       {/*--------------------------------*/}
-      <div className="cards-container">
+      {/*Cunado el tamaño es menor de 500px*/}
+      <div className="cards-container" >
           <div className="row d-flex justify-content align-items-center ">
-              <div className="card" style={{ borderRadius: "15px" }}>
+          <div className="card" style={{ border: "none",  backgroundColor: "rgba(255, 255, 255, 0)" }}>
                 <div className="card-body p-4">
                   <div className="d-flex text-black">
                     
@@ -127,9 +187,9 @@ export const Reservar = () => {
 
                   </div>
                 </div>
-            </div>
+            </div>   
 
-            <div className="card" style={{ borderRadius: "15px" }}>
+            <div className="card"  style={{border: "none", backgroundColor: "rgba(255, 255, 255, 0)" }}>
                 <div className="card-body p-4">
                   <div className="d-flex text-black">
                     <div className="flex-shrink-0">
@@ -151,7 +211,7 @@ export const Reservar = () => {
                 </div>
             </div>
 
-            <div className="card" style={{ borderRadius: "15px" }}>
+            <div className="card"  style={{ border: "none", backgroundColor: "rgba(255, 255, 255, 0)" }}>
                 <div className="card-body p-4">
                   <div className="d-flex text-black">
                     <div className="flex-shrink-0">
@@ -174,25 +234,44 @@ export const Reservar = () => {
               </div>
           </div>
       </div>
-      {/*--------------------------------*/}
-
-            
+      {/*-----------------------------------------------------------------------------*/}
+      {/*FORMULARIO*/}
       <div className="Reservar" style={{ display: "none" }}>
         <div className="row justify-content-center">
             <form>
               <fieldset>
-                <legend>Reservar
+                <legend className="reservar-titulo">REALIZAR LA RESERVACION
                   <button className="btn  btn-outline-danger" onClick={handleCloseModal}>
                     CERRAR
                   </button>
                 </legend>
 
-                <div className="col-sm-6">
+                 {/* Notificación de campos incompletos */}
+                  {showIncompleteFieldsNotification && (
+                    <div className="alert alert-danger" role="alert">
+                      Por favor, completa todos los campos.
+                    </div>
+                  )}
+
+                 {/* Notificación */}
+                  {showNotification && (
+                    <div className="alert alert-success" role="alert">
+                      ¡La reserva se ha agregado exitosamente!
+                    </div>
+                  )}
+
+                <div className="col-sm-6" style={{ display: "none" }}>
                     <div className="form-group">
                         <label htmlFor="id" className="form-label mt-4 d-block">
-                        Id Ususario
+                        Id Ususario  
                         </label>
-                        <input type="text" id="id" class="form-control" />
+                        <input
+                          type="text"
+                          id="id"
+                          className="form-control"
+                          value={IdUsuario}
+                          onChange={(e) => setIdUsuario(e.target.value)}
+                        />
                     </div>
                   </div>
               
@@ -217,18 +296,24 @@ export const Reservar = () => {
                         <label htmlFor="cantpersonas" className="form-label mt-4">
                         Cantidad de personas
                         </label>
-                        <select className="form-select" id="numeroPersonas">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>+10</option>
-                    </select>
+                        <select 
+                          className="form-select" 
+                          id="numeroPersonas"
+                          value={peopleCount}
+                          onChange={(e) => setPeopleCount(parseInt(e.target.value))}
+                        > 
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">+10</option>
+                        </select>
                     </div>
                   </div>
                 </div>
@@ -239,26 +324,35 @@ export const Reservar = () => {
                         <label htmlFor="pago" className="form-label mt-4 d-block">
                           Tipo de pago
                         </label>
-                        <select className="form-select" id="pago">
-                      <option>Efectivo</option>
-                      <option>Tarjeta</option>
-                    
-                    </select>
+                        <select 
+                          className="form-select" 
+                          id="pago"
+                          value={paymentType} 
+                          onChange={(e) => setPaymentType(e.target.value)}
+                        >
+                          <option value="">Selecciona tipo de pago</option>
+                          <option value="Efectivo">Efectivo</option>
+                          <option value="Tarjeta">Tarjeta</option>
+                        </select>
                     </div>
                   </div>
+
                   <div className="col-sm-6">
                     <div className="form-group">
                         <label htmlFor="telefono" className="form-label mt-4" id="telefono">
                           Numero Telefonico
                         </label>
                         <input
-                      type="number"
-                      className="form-control"
-                      id="inputName"
-                      placeholder="000 000 0000"
-                    />
+                          type="text"
+                          className="form-control"
+                          id="inputName"
+                          placeholder="000 000 0000"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                        />
                     </div>
                   </div>
+
                 </div>
                 <div className="row">
                   <div className="col-sm-6">
@@ -291,12 +385,11 @@ export const Reservar = () => {
                   </div>
                 </div>
                 <br />
-                  <button type="submit" className="btn btn-danger" onClick={handleSubmit}>
-                  Reservar
-                  </button>
-              </fieldset>
-              
+              </fieldset>              
           </form>
+             <button type="submit" className="btn-reservar" onClick={handleSubmit}>
+                  Reservar
+             </button> 
         </div>
       </div>
     </div>

@@ -14,7 +14,23 @@
   font-family: Arial, sans-serif;
   padding: 0px; 
 }
-  
+
+/*Boton de Iniciar sesion */
+.btn-iniciar-session {
+  background-color: #cd1818;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-iniciar-session:hover {
+  background-color: #a31212; /* Cambia el color al pasar el mouse sobre el botón */
+}
+
+
 /* Ajuste a los estilos del formulario para adaptarse al nuevo contenedor */
 .login-container .Login {
   margin: 0;
@@ -129,6 +145,15 @@
   border-bottom-right-radius: 10px; 
 
 }
+
+/*                 Tiempo de espera */
+.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 @media (max-width: 768px) {
   /* ocultar la imagen */

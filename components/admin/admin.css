@@ -1,140 +1,163 @@
-/* Css Admin*/
-.encabezado{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.encabezado .menu{
-    display: flex;
-    gap: 40px;
-}
-
-.encabezado .menu-item {
-    margin-right: 10px;
-}
-
-.admin-container {
-    display: flex;
-  }
-  
-  .left-container {
-    width: 20%;
-    padding: 20px;
-  }
-  
-  .center-container {
-    width: 50%;
-    padding: 20px;
-  }
-  
-  .right-container {
-    width: 30%;
-    padding: 20px;
-  }
-    
-
+/* Estilos generales */
 .container {
-    padding: 16px;
-  }
-  
-  .mb-4 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .btn-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-  }
-  
-  .table th,
-  .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-  }
-  
-  .table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-  }
-  
-  .table tbody + tbody {
-    border-top: 2px solid #dee2e6;
-  }
-  
-  .form-label {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .form-control {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  
-  .btn-primary {
-    color: #fff;
-    background-color: #000000;
-    border-color: #000000;
-  }
-  
-  .btn-primary:hover {
-    color: #fff;
-    background-color: #b30000;
-    border-color: #000000;
-  }
-  
-  .btn-secondary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-  }
-  
-  .btn-secondary:hover {
-    color: #fff;
-    background-color: #545b62;
-    border-color: #4e555b;
-  }
+  padding: 16px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.btn-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Tabla */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  overflow-x: auto; /* Agregado para que la tabla sea scrollable en pantallas pequeñas */
+}
+
+.table th,
+.table td {
+  padding: 0.5rem; /* Reducido el padding para ocupar menos espacio */
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+/* Formulario */
+.form-label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Botones */
+.btn-primary {
+  color: #fff;
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #b30000;
+  border-color: #000000;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #545b62;
+  border-color: #4e555b;
+}
 
 .btn-sm {
-    margin-right: 5px;
+  margin-right: 5px;
+}
+
+/* Botones de acción en la tabla */
+.table-action-buttons .btn {
+  margin-right: 5px;
+}
+
+.table-action-buttons .btn-edit {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.table-action-buttons .btn-edit:hover {
+  background-color: #0056b3;
+}
+
+.table-action-buttons .btn-delete {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.table-action-buttons .btn-delete:hover {
+  background-color: #c82333;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 8px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.15rem; /* Reducido aún más el padding para ocupar menos espacio */
+    white-space: nowrap; /* Evita que el texto se rompa y se mantenga en una línea */
+  }
+
+  /* Mostrar solo la foto, nombre y botones de editar/eliminar */
+  .table th:not(:first-child),
+  .table td:not(:first-child):not(:nth-child(3)):not(:nth-child(7)):not(:nth-child(8)) {
+    display: none;
+  }
+
+  .table td:nth-child(3),
+  .table td:nth-child(7), 
+  .table td:nth-child(8) {
+    text-align: center; /* Centrar los botones de editar/eliminar */
+  }
+
+  .table td:nth-child(3) img {
+    max-width: 30px; /* Limitar el ancho de la imagen */
+    height: auto; /* Mantener la proporción */
+    display: block; /* Alinear la imagen al centro */
+  }
+
+
+  /* Mostrar encabezados en pantallas pequeñas */
+  .table thead {
+    display: table-header-group;
+  }
+
+  /* Mostrar solo encabezados de imagen, nombre y botones en pantallas pequeñas */
+  .table th:nth-child(1),
+  .table th:nth-child(3),
+  .table th:nth-child(7),
+  .table th:nth-child(8) {
+    display: table-cell;
   }
   
-  .table-action-buttons .btn {
-    margin-right: 5px;
+  /* Comprimir el texto del nombre */
+  .table td:nth-child(3) {
+    max-width: 200px; /* Ajusta el ancho máximo según sea necesario */
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Oculta el texto que excede el ancho máximo */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos para indicar texto oculto */
   }
-  
-  .table-action-buttons .btn-edit {
-    color: #fff;
-    background-color: #007bff; 
-    border-color: #007bff;
-  }
-  
-  .table-action-buttons .btn-edit:hover {
-    background-color: #0056b3; 
-  }
-  
-  .table-action-buttons .btn-delete {
-    color: #fff;
-    background-color: #dc3545; 
-    border-color: #dc3545;
-  }
-  
-  .table-action-buttons .btn-delete:hover {
-    background-color: #c82333; 
-  }
+}

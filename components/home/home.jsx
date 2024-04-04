@@ -6,6 +6,9 @@ import fondo2 from "/fondo2.jpg";
 import tienda1 from "/tienda1.jpg"; 
 import tienda2 from "/tienda2.jpg"; 
 import promocion from "/promocion.png"; 
+import imagen1 from "/imagen1.png";
+
+import "./home.css";
 
 export const Home = () => {
   const [contactInfo, setContactInfo] = useState({
@@ -52,13 +55,15 @@ export const Home = () => {
 
   return (
     <div>
+    <div className="home-container">
+    </div>  
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
            <img src={fondo2} className="d-block w-100" alt="Slide 1" />          
         </div>
         <div className="carousel-item">
-           <img src={fondo1} className="d-block w-100" alt="Slide 2" />        </div>
+           <img src={fondo1} className="d-block w-100" alt="Slide 2" /> </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -69,12 +74,8 @@ export const Home = () => {
         <span className="visually-hidden">Next</span>
       </button>
     </div>
-
-    <div style={sectionStyle}>
-      <h1 style={{ textAlign: "center", marginTop: "40px" }}>BIENVENIDO AL SEÑOR SUSHI</h1>
-      <p style={{ textAlign: "center", fontSize: "1.2em", fontStyle: "italic" }}>
-        Disfruta de la exquisitez oriental en cada bocado con Señor Sushi, donde la tradición se fusiona con el sabor contemporáneo.
-      </p>
+        <div style={sectionStyle}>
+      
 
       <div className="container mt-4">
         <Carousel interval={null} style={{ maxWidth: "600px", margin: "0 auto" }}>
@@ -157,6 +158,7 @@ export const Home = () => {
           </div>
         </footer>
     </div>
+
   </div>
   );
 };

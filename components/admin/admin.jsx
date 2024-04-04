@@ -4,7 +4,6 @@ import "bootswatch/dist/Cosmo/bootstrap.min.css";
 import { Modal } from "react-bootstrap";
 import "./admin.css";
 
-// Componente principal
 export const Admin = () => {
   const [products, setProducts] = useState([]);
   const [showProductPutModal, setShowProductPutModal] = useState(false);
@@ -164,14 +163,22 @@ export const Admin = () => {
 
   return (
     <div>
-      <div style={{ textAlign: "right" }}>
-        <button
-          className="btn btn-success"
-          onClick={() => handleShowProductPostModal()}
-        >
-          Añadir producto
-        </button>
-      </div>{" "}
+
+      <div class="btn-group btn-group-lg">
+        <button type="button" class="btn btn-primary"  onClick={() => {  window.location.href = '/adminreservaciones';  }}>ADMIN RESERVACIONES</button>
+        <button type="button" class="btn btn-primary"  onClick={() => {  window.location.href = '/admincocina';  }}>COCINA</button>
+        <button type="button" class="btn btn-success"   onClick={() => handleShowProductPostModal()} >Añadir Nuevo Producto</button>
+      </div>
+
+      <h1 class="reservation-title"></h1>
+
+      <div class="card">
+    <div class="card-header">
+      <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+         PRODUCTOS
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -218,9 +225,13 @@ export const Admin = () => {
           ))}
         </tbody>
       </table>
+    </div>
+  </div>
+
+      
       <Modal show={showProductPutModal} onHide={handleCloseProductPutModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Editar producto</Modal.Title>
+          <Modal.Title>EDITAR PRODUCTO</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {productToPut && (
@@ -316,7 +327,7 @@ export const Admin = () => {
       </Modal>
       <Modal show={showProductPostModal} onHide={handleCloseProductPostModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Crear producto</Modal.Title>
+          <Modal.Title>CREAR PRODUCTO</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {productToPost && (

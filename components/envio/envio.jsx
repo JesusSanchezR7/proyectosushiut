@@ -6,10 +6,8 @@ export const Envio = () => {
   return (
     <div className="Envio">
 
-      
+      <h1>holaaa</h1>
     
-
-
   </div>
   );
 };
