@@ -165,12 +165,13 @@ export const Admin = () => {
     <div>
 
       <div class="btn-group btn-group-lg">
+        <button type="button" class="btn btn-primary"  onClick={() => {  window.location.href = '/home';  }}>HOME</button>
         <button type="button" class="btn btn-primary"  onClick={() => {  window.location.href = '/adminreservaciones';  }}>ADMIN RESERVACIONES</button>
         <button type="button" class="btn btn-primary"  onClick={() => {  window.location.href = '/admincocina';  }}>COCINA</button>
         <button type="button" class="btn btn-success"   onClick={() => handleShowProductPostModal()} >Añadir Nuevo Producto</button>
       </div>
 
-      <h1 class="reservation-title"></h1>
+      <h1 class="reservation-title">Hola, Bienvenido Admin</h1>
 
       <div class="card">
     <div class="card-header">

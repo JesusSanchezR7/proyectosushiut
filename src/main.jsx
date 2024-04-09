@@ -12,9 +12,7 @@ import { Admin } from "../components/admin/admin";
 import { Admin_reservacion } from "../components/admin-reservacion/admin_reservacion";
 import { Admin_cocina } from "../components/admin-cocina/admin_cocina";
 
-
 import  Menu  from "../components/menu/charolas";
-
 
 import { DatosEnvio } from "../components/envio/datosenvio";
 import { Envio } from "../components/envio/envio";

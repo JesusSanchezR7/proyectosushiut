@@ -77,6 +77,13 @@
     z-index: -1;
 }
 
+.img-promocion {
+  max-width: 100%; /* La imagen nunca será más ancha que su contenedor */
+  height: auto; /* La altura se ajustará automáticamente para mantener la relación de aspecto */
+  display: block; /* Asegura que la imagen se muestre como un bloque */
+  margin: 0 auto; /* Centra la imagen horizontalmente dentro de su contenedor */
+}
+
 
   
 

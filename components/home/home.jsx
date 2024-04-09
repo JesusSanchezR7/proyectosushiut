@@ -54,9 +54,7 @@ export const Home = () => {
   };
 
   return (
-    <div>
-    <div className="home-container">
-    </div>  
+    <div> 
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
@@ -130,7 +128,7 @@ export const Home = () => {
         </Carousel>
       </div><br></br>
       <div className="d-flex justify-content-center">
-      <img src={promocion} alt="Descripción de la imagen" />
+      <img className="img-promocion" src={promocion} alt="Descripción de la imagen" />
     </div>
               {/* Footer mejorado */}
               <footer style={{ backgroundColor: "#333", color: "#fff", padding: "20px 0", textAlign: "center", marginTop: "40px" }}>
